@@ -12,3 +12,14 @@ Este proyecto se elabora para aprobar una clase, puede tener poca o nula contrib
 ## Reporte de errores o solicitudes de pull
 
 *No serán atendidas*
+
+## Comandos para configurar Laravel
+En consola, ejecuta los siguientes comandos:
+
+	git clone https://github.com/michelolvera/VAR.git
+	cd VAR
+	composer install
+	cp .env.example .env
+	php artisan key:generate
+
+Despues de eso, estas listo para desarrollar.

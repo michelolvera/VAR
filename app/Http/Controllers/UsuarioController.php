@@ -2,6 +2,7 @@
 
 namespace ArticulosReligiosos\Http\Controllers;
 
+use ArticulosReligiosos\UserData;
 use Illuminate\Http\Request;
 
 class UsuarioController extends Controller

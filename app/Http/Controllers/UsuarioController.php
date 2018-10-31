@@ -14,6 +14,7 @@ class UsuarioController extends Controller
     public function index()
     {
         //
+        return 'index usuario';
     }
 
     /**
@@ -24,6 +25,7 @@ class UsuarioController extends Controller
     public function create()
     {
         //
+        return view('usuario.RegistrarUsuario');
     }
 
     /**
@@ -35,6 +37,16 @@ class UsuarioController extends Controller
     public function store(Request $request)
     {
         //
+        //return $request->all();
+        //return $request->input('apellido_materno');
+        $usuario = new UserData();
+
+        $usuario->user_id = 1;//Modificar a usuario registrado
+        $usuario->apellido_pat = $request->input('apellido_paterno');
+        $usuario->apellido_mat = $request->input('apellido_materno');
+        $usuario->save();
+
+        return 'Guardado';
     }
 
     /**

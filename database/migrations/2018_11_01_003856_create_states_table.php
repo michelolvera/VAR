@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAppConfigsTable extends Migration
+class CreateStatesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,13 @@ class CreateAppConfigsTable extends Migration
      */
     public function up()
     {
-        Schema::create('app_configs', function (Blueprint $table) {
+        Schema::create('states', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('shipping_cost');
+            $table->string('name');
+            $table->unsignedInteger('countrie_id');
             $table->timestamps();
+            //foreign-keys
+            $table->foreign('countrie_id')->references('id')->on('countries');
         });
     }
 
@@ -27,6 +30,6 @@ class CreateAppConfigsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('app_configs');
+        Schema::dropIfExists('states');
     }
 }

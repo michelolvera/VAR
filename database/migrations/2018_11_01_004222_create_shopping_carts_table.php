@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAppConfigsTable extends Migration
+class CreateShoppingCartsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,14 @@ class CreateAppConfigsTable extends Migration
      */
     public function up()
     {
-        Schema::create('app_configs', function (Blueprint $table) {
+        Schema::create('shopping_carts', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('shipping_cost');
+            $table->unsignedInteger('sale_id');
+            $table->unsignedInteger('product_id');
             $table->timestamps();
+            //foreign-keys
+            $table->foreign('sale_id')->references('id')->on('sales');
+            $table->foreign('product_id')->references('id')->on('products');
         });
     }
 
@@ -27,6 +31,6 @@ class CreateAppConfigsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('app_configs');
+        Schema::dropIfExists('shopping_carts');
     }
 }

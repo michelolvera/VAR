@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAppConfigsTable extends Migration
+class CreateProductImgNamesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,13 @@ class CreateAppConfigsTable extends Migration
      */
     public function up()
     {
-        Schema::create('app_configs', function (Blueprint $table) {
+        Schema::create('product_img_names', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('shipping_cost');
+            $table->unsignedInteger('product_id');
+            $table->string('url');
             $table->timestamps();
+            //foreign-keys
+            $table->foreign('product_id')->references('id')->on('products');
         });
     }
 
@@ -27,6 +30,6 @@ class CreateAppConfigsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('app_configs');
+        Schema::dropIfExists('product_img_names');
     }
 }

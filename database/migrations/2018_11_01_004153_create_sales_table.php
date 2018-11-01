@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAppConfigsTable extends Migration
+class CreateSalesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,14 @@ class CreateAppConfigsTable extends Migration
      */
     public function up()
     {
-        Schema::create('app_configs', function (Blueprint $table) {
+        Schema::create('sales', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('shipping_cost');
+            $table->unsignedInteger('user_id');
+            $table->enum('type', ['paypal', 'cash']);   
+            $table->unsignedDecimal('sale_total', 8, 2);
             $table->timestamps();
+            //foreign-keys
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
@@ -27,6 +31,6 @@ class CreateAppConfigsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('app_configs');
+        Schema::dropIfExists('sales');
     }
 }

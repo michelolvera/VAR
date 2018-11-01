@@ -4,7 +4,7 @@ namespace ArticulosReligiosos;
 
 use Illuminate\Database\Eloquent\Model;
 
-class app_config extends Model
+class App_config extends Model
 {
     //
 }

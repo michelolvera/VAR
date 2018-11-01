@@ -4,7 +4,7 @@ namespace ArticulosReligiosos;
 
 use Illuminate\Database\Eloquent\Model;
 
-class domicile extends Model
+class Domicile extends Model
 {
     //
 }

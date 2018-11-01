@@ -4,7 +4,7 @@ namespace ArticulosReligiosos;
 
 use Illuminate\Database\Eloquent\Model;
 
-class countrie extends Model
+class Countrie extends Model
 {
     //
 }

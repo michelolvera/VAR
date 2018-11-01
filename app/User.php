@@ -27,4 +27,20 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function domicile(){
+        return $this->hasOne('ArticulosReligiosos\Domicile');
+    }
+
+    public function sales(){
+        return $this->hasMany('ArticulosReligiosos\Sale');
+    }
+
+    public function comments(){
+        return $this->hasMany('ArticulosReligiosos\Comment');
+    }
+
+    public function replies(){
+        return $this->hasMany('ArticulosReligiosos\Replie');
+    }
 }

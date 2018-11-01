@@ -19,6 +19,7 @@ class CreateDomicilesTable extends Migration
             $table->string('street');
             $table->string('between_streets');
             $table->string('neighborhood');
+            $table->unsignedInteger('zip_code');
             $table->string('city');
             $table->unsignedInteger('state_id');
             $table->unsignedInteger('user_id');

@@ -2,6 +2,7 @@ $(document).ready(function() {
 	$(".dropdown-trigger").dropdown();
 	var sidenav = document.getElementById("menu-side");
     var snInstance = M.Sidenav.init(sidenav);
+    $('select').formSelect();
 });
 
 function nav(){

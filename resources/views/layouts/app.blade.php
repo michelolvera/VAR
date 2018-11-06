@@ -15,7 +15,7 @@
             <nav>
                 <div class="nav-wrapper">
                     <a href="#" class="brand-logo center">VAR</a>
-                    <ul id="nav-mobile" class="left hide-on-med-and-down">
+                    <ul id="nav-mobile" class="left">
                         <li><a id="btn_sidenav" href="#" onclick="nav();"><i class="material-icons">menu</i></a></li>
                     </ul>
                     <!-- Inicio de sesion en caso de requerirse en navbar
@@ -107,7 +107,7 @@
                 </a>
             </li>
         </ul>
-        <main>
+        <main class="container">
             @yield('content')
         </main>
     </div>
@@ -119,5 +119,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="{{ asset('js/principal.js') }}"></script>
+    @yield('extraimports')
 </body>
 </html>

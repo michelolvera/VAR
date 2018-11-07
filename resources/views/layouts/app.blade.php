@@ -42,7 +42,7 @@
             <li>
                 <div class="user-view">
                     <div class="background">
-                        <img src="http://3.bp.blogspot.com/_OFth7yyOOM8/TMWtJ24mlfI/AAAAAAAABmw/fEWkbsZuj2s/s1600/01.jpg"
+                        <img src="{{ asset('svg/403.svg') }}"
                         alt="">
                     </div>
                     <a href="#">

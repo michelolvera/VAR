@@ -1,4 +1,4 @@
-g<?php
+<?php
 
 use Illuminate\Database\Seeder;
 use ArticulosReligiosos\User;

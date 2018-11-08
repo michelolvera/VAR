@@ -16,7 +16,10 @@ class StateController extends Controller
     public function index(Request $request)
     {
         if($request->ajax()){
-            $states = Countrie::find($request->countrie_id)->states()->orderBy('name')->get();
+            if ($request->countrie_id == null)
+                $states = State::all();
+            else
+                $states = Countrie::find($request->countrie_id)->states()->orderBy('name')->get();
             $states->transform(function ($item, $key){
                 return $item->only(['id', 'name']);
             });

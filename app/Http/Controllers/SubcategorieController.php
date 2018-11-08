@@ -3,6 +3,7 @@
 namespace ArticulosReligiosos\Http\Controllers;
 
 use ArticulosReligiosos\Subcategorie;
+use ArticulosReligiosos\Categorie;
 use Illuminate\Http\Request;
 
 class SubcategorieController extends Controller
@@ -12,9 +13,20 @@ class SubcategorieController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        if($request->ajax()){
+            if ($request->categorie_id == null)
+                $subcategorie = Subcategorie::all();
+            else
+                $subcategorie = Categorie::find($request->categorie_id)->subcategories()->orderBy('name')->get();
+            $subcategorie->transform(function ($item, $key){
+                return $item->only(['id', 'name']);
+            });
+            return response()->json($subcategorie, 200);
+        }
+        //Si la solicitud se hace mediante HTTP, se retonara una vista.
+        return "Vista de subcategorias ";
     }
 
     /**

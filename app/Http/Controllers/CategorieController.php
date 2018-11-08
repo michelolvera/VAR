@@ -12,9 +12,16 @@ class CategorieController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        if($request->ajax()){
+            $categories = Categorie::all();
+            $categories->transform(function ($item, $key){
+                return $item->only(['id', 'name']);
+            });
+            return response()->json($categories, 200);
+        }
+        return "Vista de categoria";
     }
 
     /**

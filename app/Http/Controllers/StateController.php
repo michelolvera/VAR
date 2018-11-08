@@ -3,6 +3,7 @@
 namespace ArticulosReligiosos\Http\Controllers;
 
 use ArticulosReligiosos\State;
+use ArticulosReligiosos\Countrie;
 use Illuminate\Http\Request;
 
 class StateController extends Controller
@@ -12,14 +13,17 @@ class StateController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //Si la solicitud se hace por AJAX, se retornara un JSON con todos los elementos de la lista/
         if($request->ajax()){
-            return "AJAX";
+            $states = Countrie::find($request->countrie_id)->states()->orderBy('name')->get();
+            $states->transform(function ($item, $key){
+                return $item->only(['id', 'name']);
+            });
+            return response()->json($states, 200);
         }
         //Si la solicitud se hace mediante HTTP, se retonara una vista.
-        return "Vista de Estados";
+        return "Vista de Estados ";
     }
 
     /**

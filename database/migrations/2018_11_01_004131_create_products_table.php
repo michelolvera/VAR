@@ -21,6 +21,8 @@ class CreateProductsTable extends Migration
             $table->unsignedDecimal('price', 8, 2);
             $table->unsignedTinyInteger('discount_percent');
             $table->unsignedInteger('quantity');
+            $table->boolean('pinned');
+            $table->string('slug')->unique();
             $table->timestamps();
             //foreign-keys
             $table->foreign('subcategorie_id')->references('id')->on('subcategories');

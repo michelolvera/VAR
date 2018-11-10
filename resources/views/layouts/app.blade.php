@@ -71,7 +71,7 @@
                 </div>
             </li>
             <li>
-                <a href="./index.html">
+                <a href="{{ route('home') }}">
                     <i class="material-icons">home</i>
                     Inicio
                 </a>
@@ -79,24 +79,7 @@
             <li>
                 <div class="divider"></div>
             </li>
-            <li>
-                <a href="./articulos.html">
-                    <i class="material-icons">book</i>
-                    Articulos religiosos
-                </a>
-            </li>
-            <li>
-                <a href="./libros.html">
-                    <i class="material-icons">library_books</i>
-                    Libros
-                </a>
-            </li>
-            <li>
-                <a href="./otros.html">
-                    <i class="material-icons">card_giftcard</i>
-                    Otros
-                </a>
-            </li>
+            <div id="categories"></div>
             <li>
                 <div class="divider"></div>
             </li>
@@ -107,7 +90,7 @@
                 </a>
             </li>
         </ul>
-        <main class="container">
+        <main class="container" style="padding: 1em;">
             @yield('content')
         </main>
     </div>

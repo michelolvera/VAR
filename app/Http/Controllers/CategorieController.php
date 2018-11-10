@@ -17,7 +17,7 @@ class CategorieController extends Controller
         if($request->ajax()){
             $categories = Categorie::all();
             $categories->transform(function ($item, $key){
-                return $item->only(['id', 'name']);
+                return $item->only(['id', 'name', 'icon', 'slug']);
             });
             return response()->json($categories, 200);
         }

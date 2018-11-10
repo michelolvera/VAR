@@ -14,6 +14,7 @@ use ArticulosReligiosos\Replie;
 use ArticulosReligiosos\Sale;
 use ArticulosReligiosos\App_config;
 use ArticulosReligiosos\Product_sale;
+use ArticulosReligiosos\Slide;
 
 class InitializeDatabaseSeed extends Seeder
 {
@@ -54,11 +55,11 @@ class InitializeDatabaseSeed extends Seeder
         $domicile->save();
 
         //Crear producto junto con sus requisitos
-        $categorie = new Categorie(['name' => 'Libros']);
+        $categorie = new Categorie(['name' => 'Libros', 'icon' => 'library_books', 'slug' => 'libros']);
         $categorie->save();
-        $subcategorie = new Subcategorie(['name' => 'Biblias']);
+        $subcategorie = new Subcategorie(['name' => 'Biblias', 'slug' => 'biblias']);
         $categorie->subcategories()->save($subcategorie);
-        $product = new Product(['name' => 'Biblia Arcoiris', 'description' => 'Biblia completa y explicada.', 'price' => 655.32, 'discount_percent' => 20, 'quantity' => 250]);
+        $product = new Product(['name' => 'Biblia Arcoiris', 'description' => 'Biblia completa y explicada.', 'price' => 655.32, 'discount_percent' => 20, 'quantity' => 250,'pinned' => true, 'slug' => 'biblia-arcoiris']);
         $subcategorie->products()->save($product);
 
         //Crear nombre de imagen de producto
@@ -80,5 +81,28 @@ class InitializeDatabaseSeed extends Seeder
         $sale = new Sale(['type' => 'paypal', 'sale_total' => $sale_price]);
         $user->sales()->save($sale);
         $sale->products()->save($product);
+
+        //Crear slides
+        Slide::create([
+            'title' => 'Slide 1',
+            'text' => 'Texto del Slide 1',
+            'redirect' => 'http://www.google.com',
+            'img_url' => 'svg/403.svg'
+        ]);
+        Slide::create([
+            'title' => 'Slide 2',
+            'text' => 'Texto del Slide 2',
+            'img_url' => 'svg/404.svg'
+        ]);
+        Slide::create([
+            'title' => 'Slide 3',
+            'text' => 'Texto del Slide 3',
+            'img_url' => 'svg/500.svg'
+        ]);
+        Slide::create([
+            'title' => 'Slide 4',
+            'text' => 'Texto del Slide 4',
+            'img_url' => 'svg/503.svg'
+        ]);
     }
 }

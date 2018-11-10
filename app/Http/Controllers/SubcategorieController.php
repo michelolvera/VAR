@@ -21,7 +21,7 @@ class SubcategorieController extends Controller
             else
                 $subcategorie = Categorie::find($request->categorie_id)->subcategories()->orderBy('name')->get();
             $subcategorie->transform(function ($item, $key){
-                return $item->only(['id', 'name']);
+                return $item->only(['id', 'name', 'slug']);
             });
             return response()->json($subcategorie, 200);
         }

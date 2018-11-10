@@ -16,7 +16,7 @@
                 <div class="nav-wrapper">
                     <a href="#" class="brand-logo center">VAR</a>
                     <ul id="nav-mobile" class="left">
-                        <li><a id="btn_sidenav" href="#" onclick="nav();"><i class="material-icons">menu</i></a></li>
+                        <li><a id="btn_sidenav" href="#"><i class="material-icons">menu</i></a></li>
                     </ul>
                     <!-- Inicio de sesion en caso de requerirse en navbar
                     <ul id="nav-mobile" class="right hide-on-med-and-down">

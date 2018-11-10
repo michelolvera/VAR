@@ -13,10 +13,10 @@ $(document).ready(function() {
 		console.log('No se ha podido obtener la lista de categorias.');
 	});
 	$('.sidenav').sidenav();
+	$('#btn_sidenav').click(function( event ) {
+		event.preventDefault();
+		let elem = document.getElementById("menu-side");
+		let instance = M.Sidenav.getInstance(elem);
+		instance.open();
+	})
 });
-
-function nav(){
-    let elem = document.getElementById("menu-side");
-    let instance = M.Sidenav.getInstance(elem);
-    instance.open();
-}

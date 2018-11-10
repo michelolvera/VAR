@@ -1,4 +1,9 @@
 .carousel-up{
-	top: -100px;
 	position: relative;
+}
+
+.subindex {
+	text-transform: uppercase;
+	font-size: 17pt;
+	font-weight: bold;
 }

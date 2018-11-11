@@ -79,6 +79,7 @@
             <li>
                 <div class="divider"></div>
             </li>
+            <li><a class="subheader">Categorías</a></li>
             <div id="categories"></div>
             <li>
                 <div class="divider"></div>
@@ -89,6 +90,11 @@
                     Contacto
                 </a>
             </li>
+            @if (Auth::check())
+                @if (Auth::user()->admin)
+                    @include('admin')
+                @endif
+            @endif
         </ul>
         <main class="container" style="padding: 1em;">
             @yield('content')

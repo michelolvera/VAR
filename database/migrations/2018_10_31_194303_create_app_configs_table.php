@@ -15,7 +15,7 @@ class CreateAppConfigsTable extends Migration
     {
         Schema::create('app_configs', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('shipping_cost');
+            $table->unsignedDecimal('shipping_cost', 8, 2);
             $table->timestamps();
         });
     }

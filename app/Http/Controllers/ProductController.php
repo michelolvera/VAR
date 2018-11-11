@@ -3,10 +3,19 @@
 namespace ArticulosReligiosos\Http\Controllers;
 
 use ArticulosReligiosos\Product;
+use ArticulosReligiosos\Categorie;
+use ArticulosReligiosos\Subcategorie;
+use ArticulosReligiosos\Product_img_name;
 use Illuminate\Http\Request;
+use ArticulosReligiosos\Http\Requests\StoreProductRequest;
 
 class ProductController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->except('index', 'show');
+        $this->middleware('check.admin')->except('index', 'show');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -24,7 +33,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Categorie::select('id','name')->orderBy('name', 'desc')->get();
+        return view('product.create', compact('categories'));
     }
 
     /**
@@ -33,9 +43,29 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreProductRequest $request)
     {
-        //
+        $product = new Product([
+            'name' => $request->name,
+            'description' => $request->description,
+            'price' => $request->price,
+            'discount_percent' => $request->discount_percent,
+            'quantity' => $request->quantity,
+            'pinned' => ($request->pinned != null),
+            'slug' => $request->slug,
+        ]);
+        Subcategorie::find($request->subcategorie_id)->products()->save($product);
+        $count = 0;
+        foreach ($request->pictures as $picture) {
+            $name = time().'_'.$request->slug.'_'.$count.'.'.$picture->getClientOriginalExtension();
+            $picture->move(public_path().'/img/', $name);
+            $image = new Product_img_name([
+                'name' => $name
+            ]);
+            $product->product_img_names()->save($image);
+            $count++;
+        }
+        return 'Producto guardado';
     }
 
     /**

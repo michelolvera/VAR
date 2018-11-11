@@ -9,14 +9,14 @@ $(document).ready(function() {
 			$('#countrie_id').empty();
 			$('#countrie_id').append('<option value="'+row['id']+(row['name']=="México" ? '" selected' : '"')+'>'+row['name']+'</option>');
 		});
-		$('#countrie_id').change(updateState());
+		$('#countrie_id').change(update_state());
 	})
 	.fail(function () {
 		console.log('No se ha podido obtener la lista de paises.');
 	});
 });
 
-function updateState(){
+function update_state(){
 	$.ajax({
 		method: "get",
 		url: "../state/",

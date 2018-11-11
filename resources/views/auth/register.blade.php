@@ -126,34 +126,33 @@
             </div>
             @endif
         </div>
-        <div class="input-fiel col s12 m12 l6">
+        <div class="col s12 m12 l6">
+            <label>País</label>
             <select id="countrie_id" class="browser-default" name="countrie_id" value="{{ old('countrie_id') }}" required>
             </select>
-            <label>País</label>
             @if ($errors->has('countrie_id'))
             <div class="card-panel teal">
                 <span class="white-text">{{ $errors->first('countrie_id') }}</span>
             </div>
             @endif
         </div>
-        <div class="input-fiel col s12 m12 l6">
+        <div class="col s12 m12 l6">
+            <label>Estado</label>
             <select id="state_id" class="browser-default" name="state_id" value="{{ old('state_id') }}" required>
             </select>
-            <label>Estado</label>
             @if ($errors->has('state_id'))
             <div class="card-panel teal">
                 <span class="white-text">{{ $errors->first('state_id') }}</span>
             </div>
             @endif
         </div>
-
-        <div class="row center-align">
-            <div class="col-md-6 offset-md-4">
-                <button type="submit" class="btn waves-effect waves-light">
-                    Registrarse
-                    <i class="material-icons right">send</i>
-                </button>
-            </div>
+    </div>
+    <div class="row center-align">
+        <div class="col-md-6 offset-md-4">
+            <button type="submit" class="btn waves-effect waves-light">
+                Registrarse
+                <i class="material-icons right">send</i>
+            </button>
         </div>
     </div>
 </form>

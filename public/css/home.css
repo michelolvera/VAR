@@ -1,9 +1,6 @@
-.carousel-up{
-	position: relative;
-}
-
 .subindex {
 	text-transform: uppercase;
 	font-size: 17pt;
 	font-weight: bold;
+	margin: 0 auto;
 }

@@ -25,7 +25,7 @@
         <div class="carousel-item">
             <div class="card">
                 <div class="card-image">
-                    <img src="img/{{ $discount->product_img_names()->first()->name }}">
+                    <img src="img/crop{{ $discount->product_img_names()->first()->name }}">
                     <span class="card-title">{{ $discount->name }}</span>
                 </div>
                 <div class="card-content" style="padding: 0.5em;">
@@ -48,7 +48,7 @@
         <div class="carousel-item">
             <div class="card">
                 <div class="card-image">
-                    <img src="img/{{ $pinned->product_img_names()->first()->name }}">
+                    <img src="img/crop{{ $pinned->product_img_names()->first()->name }}">
                     <span class="card-title">{{ $pinned->name }}</span>
                 </div>
                 <div class="card-content" style="padding: 0.5em;">
@@ -71,7 +71,7 @@
         <div class="carousel-item">
             <div class="card">
                 <div class="card-image">
-                    <img src="img/{{ $bestseller->product_img_names()->first()->name }}">
+                    <img src="img/crop{{ $bestseller->product_img_names()->first()->name }}">
                     <span class="card-title">{{ $bestseller->name }}</span>
                 </div>
                 <div class="card-content" style="padding: 0.5em;">

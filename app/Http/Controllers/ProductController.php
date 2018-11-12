@@ -8,6 +8,7 @@ use ArticulosReligiosos\Subcategorie;
 use ArticulosReligiosos\Product_img_name;
 use Illuminate\Http\Request;
 use ArticulosReligiosos\Http\Requests\StoreProductRequest;
+use \Gumlet\ImageResize;
 
 class ProductController extends Controller
 {
@@ -59,6 +60,15 @@ class ProductController extends Controller
         foreach ($request->pictures as $picture) {
             $name = time().'_'.$request->slug.'_'.$count.'.'.$picture->getClientOriginalExtension();
             $picture->move(public_path().'/img/', $name);
+            $imagecrop = new ImageResize(public_path().'/img/'.$name);
+            $originalWidth = $imagecrop->getSourceWidth();
+            $imagecrop->crop(300, 300);
+            $imagecrop->save(public_path().'/img/crop'.$name);
+            if($originalWidth>500){
+                $imageresize = new ImageResize(public_path().'/img/'.$name);
+                $imageresize->resizeToWidth(500);
+                $imageresize->save(public_path().'/img/'.$name);
+            }
             $image = new Product_img_name([
                 'name' => $name
             ]);

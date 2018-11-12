@@ -18,483 +18,75 @@
         @endforeach
     </ul>
 </div>
+@if (count($discounts) > 0)
 <div id="discount" class="row">
-    <div class="carousel">  
+    <div class="carousel">
+        @foreach ($discounts as $discount)
         <div class="carousel-item">
             <div class="card">
                 <div class="card-image">
-                    <img src="svg/404.svg">
-                    <span class="card-title">Card Title</span>
+                    <img src="img/{{ $discount->product_img_names()->first()->name }}">
+                    <span class="card-title">{{ $discount->name }}</span>
                 </div>
                 <div class="card-content" style="padding: 0.5em;">
-                    <p>I am a ver</p>
+                    <p>{{ $discount->description }}</p>
                 </div>
                 <div class="card-action" style="padding: 0.5em;">
-                    <a href="#">This is a link</a>
+                    <a href="../product/{{ $discount->slug }}">De ${{ $discount->price }} a ${{ $discount->price * (1-$discount->discount_percent/100) }}</a>
                 </div>
             </div>
         </div>
-        <div class="carousel-item">
-            <div class="card">
-                <div class="card-image">
-                    <img src="svg/404.svg">
-                    <span class="card-title">Card Title</span>
-                </div>
-                <div class="card-content" style="padding: 0.5em;">
-                    <p>I am a ver</p>
-                </div>
-                <div class="card-action" style="padding: 0.5em;">
-                    <a href="#">This is a link</a>
-                </div>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <div class="card">
-                <div class="card-image">
-                    <img src="svg/404.svg">
-                    <span class="card-title">Card Title</span>
-                </div>
-                <div class="card-content" style="padding: 0.5em;">
-                    <p>I am a ver</p>
-                </div>
-                <div class="card-action" style="padding: 0.5em;">
-                    <a href="#">This is a link</a>
-                </div>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <div class="card">
-                <div class="card-image">
-                    <img src="svg/404.svg">
-                    <span class="card-title">Card Title</span>
-                </div>
-                <div class="card-content" style="padding: 0.5em;">
-                    <p>I am a ver</p>
-                </div>
-                <div class="card-action" style="padding: 0.5em;">
-                    <a href="#">This is a link</a>
-                </div>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <div class="card">
-                <div class="card-image">
-                    <img src="svg/404.svg">
-                    <span class="card-title">Card Title</span>
-                </div>
-                <div class="card-content" style="padding: 0.5em;">
-                    <p>I am a ver</p>
-                </div>
-                <div class="card-action" style="padding: 0.5em;">
-                    <a href="#">This is a link</a>
-                </div>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <div class="card">
-                <div class="card-image">
-                    <img src="svg/404.svg">
-                    <span class="card-title">Card Title</span>
-                </div>
-                <div class="card-content" style="padding: 0.5em;">
-                    <p>I am a ver</p>
-                </div>
-                <div class="card-action" style="padding: 0.5em;">
-                    <a href="#">This is a link</a>
-                </div>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <div class="card">
-                <div class="card-image">
-                    <img src="svg/404.svg">
-                    <span class="card-title">Card Title</span>
-                </div>
-                <div class="card-content" style="padding: 0.5em;">
-                    <p>I am a ver</p>
-                </div>
-                <div class="card-action" style="padding: 0.5em;">
-                    <a href="#">This is a link</a>
-                </div>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <div class="card">
-                <div class="card-image">
-                    <img src="svg/404.svg">
-                    <span class="card-title">Card Title</span>
-                </div>
-                <div class="card-content" style="padding: 0.5em;">
-                    <p>I am a ver</p>
-                </div>
-                <div class="card-action" style="padding: 0.5em;">
-                    <a href="#">This is a link</a>
-                </div>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <div class="card">
-                <div class="card-image">
-                    <img src="svg/404.svg">
-                    <span class="card-title">Card Title</span>
-                </div>
-                <div class="card-content" style="padding: 0.5em;">
-                    <p>I am a ver</p>
-                </div>
-                <div class="card-action" style="padding: 0.5em;">
-                    <a href="#">This is a link</a>
-                </div>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <div class="card">
-                <div class="card-image">
-                    <img src="svg/404.svg">
-                    <span class="card-title">Card Title</span>
-                </div>
-                <div class="card-content" style="padding: 0.5em;">
-                    <p>I am a ver</p>
-                </div>
-                <div class="card-action" style="padding: 0.5em;">
-                    <a href="#">This is a link</a>
-                </div>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <div class="card">
-                <div class="card-image">
-                    <img src="svg/404.svg">
-                    <span class="card-title">Card Title</span>
-                </div>
-                <div class="card-content" style="padding: 0.5em;">
-                    <p>I am a ver</p>
-                </div>
-                <div class="card-action" style="padding: 0.5em;">
-                    <a href="#">This is a link</a>
-                </div>
-            </div>
-        </div>
+        @endforeach
     </div>
     <h2 class="center-align subindex">Ofertas</h2>
 </div>
+@endif
+@if (count($pinneds) > 0)
 <div id="pinned" class="row">
-    <div class="carousel">  
+    <div class="carousel">
+        @foreach ($pinneds as $pinned)
         <div class="carousel-item">
             <div class="card">
                 <div class="card-image">
-                    <img src="svg/404.svg">
-                    <span class="card-title">Card Title</span>
+                    <img src="img/{{ $pinned->product_img_names()->first()->name }}">
+                    <span class="card-title">{{ $pinned->name }}</span>
                 </div>
                 <div class="card-content" style="padding: 0.5em;">
-                    <p>I am a ver</p>
+                    <p>{{ $pinned->description }}</p>
                 </div>
                 <div class="card-action" style="padding: 0.5em;">
-                    <a href="#">This is a link</a>
+                    <a href="../product/{{ $pinned->slug }}">A solo ${{ $pinned->price * (1-$pinned->discount_percent/100) }}</a>
                 </div>
             </div>
         </div>
-        <div class="carousel-item">
-            <div class="card">
-                <div class="card-image">
-                    <img src="svg/404.svg">
-                    <span class="card-title">Card Title</span>
-                </div>
-                <div class="card-content" style="padding: 0.5em;">
-                    <p>I am a ver</p>
-                </div>
-                <div class="card-action" style="padding: 0.5em;">
-                    <a href="#">This is a link</a>
-                </div>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <div class="card">
-                <div class="card-image">
-                    <img src="svg/404.svg">
-                    <span class="card-title">Card Title</span>
-                </div>
-                <div class="card-content" style="padding: 0.5em;">
-                    <p>I am a ver</p>
-                </div>
-                <div class="card-action" style="padding: 0.5em;">
-                    <a href="#">This is a link</a>
-                </div>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <div class="card">
-                <div class="card-image">
-                    <img src="svg/404.svg">
-                    <span class="card-title">Card Title</span>
-                </div>
-                <div class="card-content" style="padding: 0.5em;">
-                    <p>I am a ver</p>
-                </div>
-                <div class="card-action" style="padding: 0.5em;">
-                    <a href="#">This is a link</a>
-                </div>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <div class="card">
-                <div class="card-image">
-                    <img src="svg/404.svg">
-                    <span class="card-title">Card Title</span>
-                </div>
-                <div class="card-content" style="padding: 0.5em;">
-                    <p>I am a version ofI am a version ofI am a version ofI am a version of</p>
-                </div>
-                <div class="card-action" style="padding: 0.5em;">
-                    <a href="#">This is a link</a>
-                </div>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <div class="card">
-                <div class="card-image">
-                    <img src="svg/404.svg">
-                    <span class="card-title">Card Title</span>
-                </div>
-                <div class="card-content" style="padding: 0.5em;">
-                    <p>I am a ver</p>
-                </div>
-                <div class="card-action" style="padding: 0.5em;">
-                    <a href="#">This is a link</a>
-                </div>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <div class="card">
-                <div class="card-image">
-                    <img src="svg/404.svg">
-                    <span class="card-title">Card Title</span>
-                </div>
-                <div class="card-content" style="padding: 0.5em;">
-                    <p>I am a ver</p>
-                </div>
-                <div class="card-action" style="padding: 0.5em;">
-                    <a href="#">This is a link</a>
-                </div>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <div class="card">
-                <div class="card-image">
-                    <img src="svg/404.svg">
-                    <span class="card-title">Card Title</span>
-                </div>
-                <div class="card-content" style="padding: 0.5em;">
-                    <p>I am a ver</p>
-                </div>
-                <div class="card-action" style="padding: 0.5em;">
-                    <a href="#">This is a link</a>
-                </div>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <div class="card">
-                <div class="card-image">
-                    <img src="svg/404.svg">
-                    <span class="card-title">Card Title</span>
-                </div>
-                <div class="card-content" style="padding: 0.5em;">
-                    <p>I am a ver</p>
-                </div>
-                <div class="card-action" style="padding: 0.5em;">
-                    <a href="#">This is a link</a>
-                </div>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <div class="card">
-                <div class="card-image">
-                    <img src="svg/404.svg">
-                    <span class="card-title">Card Title</span>
-                </div>
-                <div class="card-content" style="padding: 0.5em;">
-                    <p>I am a ver</p>
-                </div>
-                <div class="card-action" style="padding: 0.5em;">
-                    <a href="#">This is a link</a>
-                </div>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <div class="card">
-                <div class="card-image">
-                    <img src="svg/404.svg">
-                    <span class="card-title">Card Title</span>
-                </div>
-                <div class="card-content" style="padding: 0.5em;">
-                    <p>I am a ver</p>
-                </div>
-                <div class="card-action" style="padding: 0.5em;">
-                    <a href="#">This is a link</a>
-                </div>
-            </div>
-        </div>
+        @endforeach
     </div>
     <h2 class="center-align subindex">Destacados</h2>
 </div>
+@endif
+@if (count($bestsellers) > 0)
 <div id="bestseller" class="row">
-    <div class="carousel">  
+    <div class="carousel">
+        @foreach ($bestsellers as $bestseller)
         <div class="carousel-item">
             <div class="card">
                 <div class="card-image">
-                    <img src="svg/404.svg">
-                    <span class="card-title">Card Title</span>
+                    <img src="img/{{ $bestseller->product_img_names()->first()->name }}">
+                    <span class="card-title">{{ $bestseller->name }}</span>
                 </div>
                 <div class="card-content" style="padding: 0.5em;">
-                    <p>I am a ver</p>
+                    <p>{{ $bestseller->description }}</p>
                 </div>
                 <div class="card-action" style="padding: 0.5em;">
-                    <a href="#">This is a link</a>
+                    <a href="../product/{{ $bestseller->slug }}">A solo ${{ $bestseller->price * (1-$bestseller->discount_percent/100) }}</a>
                 </div>
             </div>
         </div>
-        <div class="carousel-item">
-            <div class="card">
-                <div class="card-image">
-                    <img src="svg/404.svg">
-                    <span class="card-title">Card Title</span>
-                </div>
-                <div class="card-content" style="padding: 0.5em;">
-                    <p>I am a ver</p>
-                </div>
-                <div class="card-action" style="padding: 0.5em;">
-                    <a href="#">This is a link</a>
-                </div>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <div class="card">
-                <div class="card-image">
-                    <img src="svg/404.svg">
-                    <span class="card-title">Card Title</span>
-                </div>
-                <div class="card-content" style="padding: 0.5em;">
-                    <p>I am a ver</p>
-                </div>
-                <div class="card-action" style="padding: 0.5em;">
-                    <a href="#">This is a link</a>
-                </div>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <div class="card">
-                <div class="card-image">
-                    <img src="svg/404.svg">
-                    <span class="card-title">Card Title</span>
-                </div>
-                <div class="card-content" style="padding: 0.5em;">
-                    <p>I am a ver</p>
-                </div>
-                <div class="card-action" style="padding: 0.5em;">
-                    <a href="#">This is a link</a>
-                </div>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <div class="card">
-                <div class="card-image">
-                    <img src="svg/404.svg">
-                    <span class="card-title">Card Title</span>
-                </div>
-                <div class="card-content" style="padding: 0.5em;">
-                    <p>I am a ver</p>
-                </div>
-                <div class="card-action" style="padding: 0.5em;">
-                    <a href="#">This is a link</a>
-                </div>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <div class="card">
-                <div class="card-image">
-                    <img src="svg/404.svg">
-                    <span class="card-title">Card Title</span>
-                </div>
-                <div class="card-content" style="padding: 0.5em;">
-                    <p>I am a ver</p>
-                </div>
-                <div class="card-action" style="padding: 0.5em;">
-                    <a href="#">This is a link</a>
-                </div>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <div class="card">
-                <div class="card-image">
-                    <img src="svg/404.svg">
-                    <span class="card-title">Card Title</span>
-                </div>
-                <div class="card-content" style="padding: 0.5em;">
-                    <p>I am a ver</p>
-                </div>
-                <div class="card-action" style="padding: 0.5em;">
-                    <a href="#">This is a link</a>
-                </div>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <div class="card">
-                <div class="card-image">
-                    <img src="svg/404.svg">
-                    <span class="card-title">Card Title</span>
-                </div>
-                <div class="card-content" style="padding: 0.5em;">
-                    <p>I am a ver</p>
-                </div>
-                <div class="card-action" style="padding: 0.5em;">
-                    <a href="#">This is a link</a>
-                </div>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <div class="card">
-                <div class="card-image">
-                    <img src="svg/404.svg">
-                    <span class="card-title">Card Title</span>
-                </div>
-                <div class="card-content" style="padding: 0.5em;">
-                    <p>I am a ver</p>
-                </div>
-                <div class="card-action" style="padding: 0.5em;">
-                    <a href="#">This is a link</a>
-                </div>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <div class="card">
-                <div class="card-image">
-                    <img src="svg/404.svg">
-                    <span class="card-title">Card Title</span>
-                </div>
-                <div class="card-content" style="padding: 0.5em;">
-                    <p>I am a ver</p>
-                </div>
-                <div class="card-action" style="padding: 0.5em;">
-                    <a href="#">This is a link</a>
-                </div>
-            </div>
-        </div>
-        <div class="carousel-item">
-            <div class="card">
-                <div class="card-image">
-                    <img src="svg/404.svg">
-                    <span class="card-title">Card Title</span>
-                </div>
-                <div class="card-content" style="padding: 0.5em;">
-                    <p>I am a ver</p>
-                </div>
-                <div class="card-action" style="padding: 0.5em;">
-                    <a href="#">This is a link</a>
-                </div>
-            </div>
-        </div>
+        @endforeach
     </div>
     <h2 class="center-align subindex">Mas vendidos</h2>
-</div> 
+</div>
+@endif
 <hr>
 <div id="random" class="row">
     @foreach ($products as $product)

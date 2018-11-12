@@ -28,7 +28,7 @@
                     <img src="img/crop{{ $discount->product_img_names()->first()->name }}">
                     <span class="card-title">{{ $discount->name }}</span>
                 </div>
-                <div class="card-content" style="padding: 0.5em;">
+                <div class="card-content truncate" style="padding: 0.5em;">
                     <p>{{ $discount->description }}</p>
                 </div>
                 <div class="card-action" style="padding: 0.5em;">
@@ -51,7 +51,7 @@
                     <img src="img/crop{{ $pinned->product_img_names()->first()->name }}">
                     <span class="card-title">{{ $pinned->name }}</span>
                 </div>
-                <div class="card-content" style="padding: 0.5em;">
+                <div class="card-content truncate" style="padding: 0.5em;">
                     <p>{{ $pinned->description }}</p>
                 </div>
                 <div class="card-action" style="padding: 0.5em;">
@@ -74,7 +74,7 @@
                     <img src="img/crop{{ $bestseller->product_img_names()->first()->name }}">
                     <span class="card-title">{{ $bestseller->name }}</span>
                 </div>
-                <div class="card-content" style="padding: 0.5em;">
+                <div class="card-content truncate" style="padding: 0.5em;">
                     <p>{{ $bestseller->description }}</p>
                 </div>
                 <div class="card-action" style="padding: 0.5em;">
@@ -88,7 +88,7 @@
 </div>
 @endif
 <hr>
-<div id="random" class="row">
+<div id="random" class="row grid">
     @foreach ($products as $product)
     <div class="col s12 m6 l3">
         <div class="card">
@@ -109,5 +109,7 @@
 @endsection
 @section('extraimports')
 <script src="{{ asset('js/home.js') }}"></script>
+<script src="{{ asset('js/masonry.pkgd.min.js') }}"></script>
 <link rel="stylesheet" href="{{ asset('css/home.css') }}">
+</style>
 @endsection

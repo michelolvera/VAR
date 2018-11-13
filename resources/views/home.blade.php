@@ -28,8 +28,8 @@
                     <img src="img/crop{{ $discount->product_img_names()->first()->name }}">
                     <span class="card-title">{{ $discount->name }}</span>
                 </div>
-                <div class="card-content truncate" style="padding: 0.5em;">
-                    <p>{{ $discount->description }}</p>
+                <div class="card-content" style="padding: 0.5em;">
+                    <p class="truncate">{{ $discount->description }}</p>
                 </div>
                 <div class="card-action" style="padding: 0.5em;">
                     <a href="../product/{{ $discount->slug }}">De ${{ $discount->price }} a ${{ $discount->price * (1-$discount->discount_percent/100) }}</a>
@@ -51,8 +51,8 @@
                     <img src="img/crop{{ $pinned->product_img_names()->first()->name }}">
                     <span class="card-title">{{ $pinned->name }}</span>
                 </div>
-                <div class="card-content truncate" style="padding: 0.5em;">
-                    <p>{{ $pinned->description }}</p>
+                <div class="card-content" style="padding: 0.5em;">
+                    <p class="truncate">{{ $pinned->description }}</p>
                 </div>
                 <div class="card-action" style="padding: 0.5em;">
                     <a href="../product/{{ $pinned->slug }}">A solo ${{ $pinned->price * (1-$pinned->discount_percent/100) }}</a>
@@ -74,8 +74,8 @@
                     <img src="img/crop{{ $bestseller->product_img_names()->first()->name }}">
                     <span class="card-title">{{ $bestseller->name }}</span>
                 </div>
-                <div class="card-content truncate" style="padding: 0.5em;">
-                    <p>{{ $bestseller->description }}</p>
+                <div class="card-content" style="padding: 0.5em;">
+                    <p class="truncate">{{ $bestseller->description }}</p>
                 </div>
                 <div class="card-action" style="padding: 0.5em;">
                     <a href="../product/{{ $bestseller->slug }}">A solo ${{ $bestseller->price * (1-$bestseller->discount_percent/100) }}</a>
@@ -100,7 +100,7 @@
                 <p>{{ $product->description }}</p>
             </div>
             <div class="card-action">
-                <a href="../product/{{ $product->slug }}">Detalles</a>
+                <a href="../product/{{ $product->slug }}">A solo ${{ $product->price * (1-$product->discount_percent/100) }}</a>
             </div>
         </div>
     </div>

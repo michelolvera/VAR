@@ -22,7 +22,8 @@ class UsersTableSeeder extends Seeder
     	$user->password = bcrypt('12345678');
     	$user->rfc = "NA";
     	$user->phone_number = "1234567890";
-    	$user->admin = true;
+        $user->admin = true;
+    	$user->slug = 'admin-account';
     	$user->save();
     }
 }

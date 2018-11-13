@@ -18,6 +18,9 @@
                     <ul id="nav-mobile" class="left">
                         <li><a id="btn_sidenav" href="#"><i class="material-icons">menu</i></a></li>
                     </ul>
+                    <ul id="nav-mobile" class="right">
+                        <li><a id="btn_shopping" href="#"><i class="material-icons">shopping_basket</i></a></li>
+                    </ul>
                     <!-- Inicio de sesion en caso de requerirse en navbar
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
                         @guest
@@ -58,7 +61,7 @@
                     </a>
                     @endif
                     @else
-                    <a href="#">
+                    <a href="../user/{{ Auth::user()->slug }}/edit">
                         <span class="name white-text">{{ Auth::user()->name }}</span>
                     </a>
                     <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

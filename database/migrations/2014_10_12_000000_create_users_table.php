@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration
             $table->string('rfc');
             $table->string('phone_number');
             $table->boolean('admin');
+            $table->string('slug');
             $table->rememberToken();
             $table->timestamps();
         });

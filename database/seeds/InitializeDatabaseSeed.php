@@ -38,7 +38,8 @@ class InitializeDatabaseSeed extends Seeder
     	$user->password = bcrypt('12345678');
     	$user->rfc = "NA";
     	$user->phone_number = "1234567890";
-    	$user->admin = false;
+        $user->admin = false;
+    	$user->slug = 'usuario-account';
     	$user->save();
 
     	//Crear direccion

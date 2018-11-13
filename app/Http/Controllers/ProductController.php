@@ -62,7 +62,10 @@ class ProductController extends Controller
             $picture->move(public_path().'/img/', $name);
             $imagecrop = new ImageResize(public_path().'/img/'.$name);
             $originalWidth = $imagecrop->getSourceWidth();
-            $imagecrop->crop(300, 300);
+            if ($originalWidth<300)
+                $imagecrop->crop($originalWidth, $originalWidth);
+            else
+                $imagecrop->crop(300, 300);
             $imagecrop->save(public_path().'/img/crop'.$name);
             if($originalWidth>500){
                 $imageresize = new ImageResize(public_path().'/img/'.$name);

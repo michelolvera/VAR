@@ -1,4 +1,4 @@
-<div id="random" class="row grid">
+<div id="products" class="row">
 	@foreach ($products as $product)
 	<div class="col s12 m6 l3">
 		<div class="card">

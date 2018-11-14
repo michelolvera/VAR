@@ -54,39 +54,32 @@ class ProductController extends Controller
             'discount_percent' => $request->discount_percent,
             'quantity' => $request->quantity,
             'pinned' => ($request->pinned != null),
-            'slug' => $request->slug,
+            'slug' => str_replace(' ', '-', $request->name).'-'.time(),
         ]);
         Subcategorie::find($request->subcategorie_id)->products()->save($product);
         $count = 0;
         foreach ($request->pictures as $picture) {
-            $name = time().'_'.$request->slug.'_'.$count.'.'.$picture->getClientOriginalExtension();
+            $name = $product->slug.'_'.$count.'.'.$picture->getClientOriginalExtension();
             $picture->move(public_path().'/img/', $name);
-            $imagecrop = new ImageResize(public_path().'/img/'.$name);
-            $originalWidth = $imagecrop->getSourceWidth();
-            $originalHeight = $imagecrop->getSourceHeight();
-            $minSize;
-            $maxSize;
-            if ($imagecrop->getSourceWidth() <= $imagecrop->getSourceHeight()){
-                $minSize = $imagecrop->getSourceWidth();
-                $maxSize = $imagecrop->getSourceHeight();
-            }else{
-                $minSize = $imagecrop->getSourceHeight();
-                $maxSize = $imagecrop->getSourceWidth();
+            //Convertir imagenes a 2:3 (600*900 preferente)  y miniatura de 1:1 (300*300 preferente) cuadrada
+            $image = new ImageResize(public_path().'/img/'.$name);
+            $imagesquare = new ImageResize(public_path().'/img/'.$name);
+            switch ($request->img_opt) {
+                case 0:
+                    //Rellenar
+                    $image->crop(600, 900, $allow_enlarge = True);                    ;
+                    break;
+                case 1:
+                    //Expandir
+                    $image->resize(600, 900, $allow_enlarge = True);
+                    break;
             }
-            if ($minSize<300)
-                $imagecrop->crop($minSize, $minSize);
-            else
-                $imagecrop->crop(300, 300);
-            $imagecrop->save(public_path().'/img/crop'.$name);
-            if($maxSize>500){
-                $imageresize = new ImageResize(public_path().'/img/'.$name);
-                $imageresize->resizeToLongSide(500);
-                $imageresize->save(public_path().'/img/'.$name);
-            }
-            $image = new Product_img_name([
+            $image->save(public_path().'/img/'.$name);
+            $imagesquare->crop(300, 300)->save(public_path().'/img/'.'crop'.$name);
+            $product_img_name = new Product_img_name([
                 'name' => $name
             ]);
-            $product->product_img_names()->save($image);
+            $product->product_img_names()->save($product_img_name);
             $count++;
         }
         return 'Producto guardado';

@@ -89,15 +89,13 @@
     <h2 class="center-align subindex">Mas vendidos</h2>
 </div>
 @endif
-<hr>
+<div class="divider"></div>
 <div id="random" class="row grid">
     @include('product.product-grid')
 </div>
 @endsection
 @section('extraimports')
 <script src="{{ asset('js/home.js') }}"></script>
-<script src="{{ asset('js/imagesloaded.pkgd.min.js') }}"></script>
-<script src="{{ asset('js/masonry.pkgd.min.js') }}"></script>
 <link rel="stylesheet" href="{{ asset('css/home.css') }}">
 </style>
 @endsection

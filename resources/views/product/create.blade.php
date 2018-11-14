@@ -71,12 +71,29 @@
 			</div>
 			@endif
 		</div>
-		<div class="input-field col s12 m6">
-			<input id="slug" name="slug" type="text" value="{{ old('slug') }}" required>
-			<label for="slug">URL del producto</label>
-			@if ($errors->has('slug'))
+		<div class="col s12 m6">
+			<label>Recorte de imagen</label>
+			<select id="img_opt" class="browser-default" name="img_opt" value="{{ old('img_opt') }}" required>
+				<option value="0">Rellenar</option>
+				<option value="1">Expandir</option>
+			</select>
+			@if ($errors->has('img_opt'))
 			<div class="card-panel teal">
-				<span class="white-text">{{ $errors->first('slug') }}</span>
+				<span class="white-text">{{ $errors->first('img_opt') }}</span>
+			</div>
+			@endif
+		</div>
+		<div class="input-field file-field col s12 m6">
+			<div class="btn">
+				<span>Imágenes</span>
+				<input name="pictures[]" value="{{ old('pictures') }}" type="file" accept="image/*" multiple required>
+			</div>
+			<div class="file-path-wrapper">
+				<input name="picturesval" class="file-path validate" value="{{ old('picturesval') }}" type="text" placeholder="Selecciona una o más imágenes del producto">
+			</div>
+			@if ($errors->has('pictures'))
+			<div class="card-panel teal">
+				<span class="white-text">{{ $errors->first('pictures') }}</span>
 			</div>
 			@endif
 		</div>
@@ -90,20 +107,6 @@
 			@if ($errors->has('pinned'))
 			<div class="card-panel teal">
 				<span class="white-text">{{ $errors->first('pinned') }}</span>
-			</div>
-			@endif
-		</div>
-		<div class="input-field file-field col s12">
-			<div class="btn">
-				<span>Imágenes</span>
-				<input name="pictures[]" value="{{ old('pictures') }}" type="file" accept="image/*" multiple required>
-			</div>
-			<div class="file-path-wrapper">
-				<input name="picturesval" class="file-path validate" value="{{ old('picturesval') }}" type="text" placeholder="Selecciona una o más imágenes del producto">
-			</div>
-			@if ($errors->has('pictures'))
-			<div class="card-panel teal">
-				<span class="white-text">{{ $errors->first('pictures') }}</span>
 			</div>
 			@endif
 		</div>

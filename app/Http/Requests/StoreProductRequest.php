@@ -30,8 +30,8 @@ class StoreProductRequest extends FormRequest
             'price' => 'required|numeric|regex:/^\d+\.\d{2}$/',
             'discount_percent' => 'required|integer|min: 0|max: 100',
             'quantity' => 'required|integer|min: 1',
-            'slug' => 'required|string',
-            'pictures' => 'required|array'
+            'pictures' => 'required|array',
+            'img_opt' => 'required|integer|min: 0|max: 2'
         ];
     }
 }

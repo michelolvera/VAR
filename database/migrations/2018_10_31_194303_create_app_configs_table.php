@@ -16,6 +16,8 @@ class CreateAppConfigsTable extends Migration
         Schema::create('app_configs', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedDecimal('shipping_cost', 8, 2);
+            $table->unsignedInteger('carousel_products');
+            $table->unsignedInteger('ramdom_products');
             $table->timestamps();
         });
     }

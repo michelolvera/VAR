@@ -26,7 +26,7 @@ class InitializeDatabaseSeed extends Seeder
     public function run()
     {
         //Crear costo de envio
-        $app_config = new App_config(['shipping_cost' => 100]);
+        $app_config = new App_config(['shipping_cost' => 100, 'carousel_products' => 10, 'ramdom_products' => 12]);
         $app_config->save();
 
         //Crear usuario
@@ -39,7 +39,6 @@ class InitializeDatabaseSeed extends Seeder
     	$user->rfc = "NA";
     	$user->phone_number = "1234567890";
         $user->admin = false;
-    	$user->slug = 'usuario-account';
     	$user->save();
 
     	//Crear direccion

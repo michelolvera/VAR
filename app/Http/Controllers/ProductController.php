@@ -24,7 +24,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //Retornar vista de catalogo
+        $products = Product::all()->sortBy('name');
+        return view('product.index', compact('products'));
     }
 
     /**
@@ -62,14 +63,24 @@ class ProductController extends Controller
             $picture->move(public_path().'/img/', $name);
             $imagecrop = new ImageResize(public_path().'/img/'.$name);
             $originalWidth = $imagecrop->getSourceWidth();
-            if ($originalWidth<300)
-                $imagecrop->crop($originalWidth, $originalWidth);
+            $originalHeight = $imagecrop->getSourceHeight();
+            $minSize;
+            $maxSize;
+            if ($imagecrop->getSourceWidth() <= $imagecrop->getSourceHeight()){
+                $minSize = $imagecrop->getSourceWidth();
+                $maxSize = $imagecrop->getSourceHeight();
+            }else{
+                $minSize = $imagecrop->getSourceHeight();
+                $maxSize = $imagecrop->getSourceWidth();
+            }
+            if ($minSize<300)
+                $imagecrop->crop($minSize, $minSize);
             else
                 $imagecrop->crop(300, 300);
             $imagecrop->save(public_path().'/img/crop'.$name);
-            if($originalWidth>500){
+            if($maxSize>500){
                 $imageresize = new ImageResize(public_path().'/img/'.$name);
-                $imageresize->resizeToWidth(500);
+                $imageresize->resizeToLongSide(500);
                 $imageresize->save(public_path().'/img/'.$name);
             }
             $image = new Product_img_name([
@@ -89,7 +100,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        return $product;
     }
 
     /**

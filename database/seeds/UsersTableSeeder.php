@@ -23,7 +23,6 @@ class UsersTableSeeder extends Seeder
     	$user->rfc = "NA";
     	$user->phone_number = "1234567890";
         $user->admin = true;
-    	$user->slug = 'admin-account';
     	$user->save();
     }
 }

@@ -12,9 +12,6 @@ use \Gumlet\ImageResize;
 
 class ProductController extends Controller
 {
-    const sizex = 600;
-    const sizey = 900;
-    const CROPTOP = 1;
     public function __construct()
     {
         $this->middleware('auth')->except('index', 'show');
@@ -70,11 +67,11 @@ class ProductController extends Controller
             switch ($request->img_opt) {
                 case 0:
                     //Rellenar
-                    $image->crop(sizex, sizey, $allow_enlarge = True);                    ;
+                    $image->crop(600, 900, $allow_enlarge = True);                    ;
                     break;
                 case 1:
                     //Expandir
-                    $image->resize(sizex, sizey, $allow_enlarge = True);
+                    $image->resize(600, 900, $allow_enlarge = True);
                     break;
             }
             $image->save(public_path().'/img/'.$name);

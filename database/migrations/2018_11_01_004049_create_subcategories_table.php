@@ -20,7 +20,7 @@ class CreateSubcategoriesTable extends Migration
             $table->string('slug')->unique();
             $table->timestamps();
             //foreign-keys
-            $table->foreign('categorie_id')->references('id')->on('categories');
+            $table->foreign('categorie_id')->references('id')->on('categories')->onDelete('cascade');
         });
     }
 

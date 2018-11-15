@@ -18,8 +18,8 @@ class CreateProductSaleTable extends Migration
             $table->unsignedInteger('product_id');
             $table->unsignedInteger('sale_id');
             //foreign-keys
-            $table->foreign('sale_id')->references('id')->on('sales');
-            $table->foreign('product_id')->references('id')->on('products');
+            $table->foreign('sale_id')->references('id')->on('sales')->onDelete('cascade');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
         });
     }
 

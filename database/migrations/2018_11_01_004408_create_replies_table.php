@@ -20,8 +20,8 @@ class CreateRepliesTable extends Migration
             $table->string('text');
             $table->timestamps();
             //foreign-keys
-            $table->foreign('comment_id')->references('id')->on('comments');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('comment_id')->references('id')->on('comments')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

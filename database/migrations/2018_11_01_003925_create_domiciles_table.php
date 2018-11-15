@@ -25,8 +25,8 @@ class CreateDomicilesTable extends Migration
             $table->unsignedInteger('user_id');
             $table->timestamps();
             //foreign-keys
-            $table->foreign('state_id')->references('id')->on('states');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('state_id')->references('id')->on('states')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

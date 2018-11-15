@@ -20,7 +20,7 @@ class CreateSalesTable extends Migration
             $table->unsignedDecimal('sale_total', 8, 2);
             $table->timestamps();
             //foreign-keys
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

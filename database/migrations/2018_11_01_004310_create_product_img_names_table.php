@@ -19,7 +19,7 @@ class CreateProductImgNamesTable extends Migration
             $table->string('name');
             $table->timestamps();
             //foreign-keys
-            $table->foreign('product_id')->references('id')->on('products');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
         });
     }
 

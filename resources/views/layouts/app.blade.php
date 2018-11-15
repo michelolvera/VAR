@@ -80,6 +80,12 @@
                 </a>
             </li>
             <li>
+                <a href="product/">
+                    <i class="material-icons">shop</i>
+                    Productos
+                </a>
+            </li>
+            <li>
                 <div class="divider"></div>
             </li>
             <li><a class="subheader">Categorías</a></li>

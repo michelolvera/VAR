@@ -18,7 +18,7 @@
 				<option value="{{ $categorie->id }}" data-icon="{{ asset('svg/material-icons/baseline-'.$categorie->icon.'-24px.svg') }}">{{ $categorie->name }}</option>
 				@endforeach
 			</select>
-			<label>Icono</label>
+			<label>Subcategoría</label>
 			@if ($errors->has('categorie_id'))
 			<div class="card-panel teal">
 				<span class="white-text">{{ $errors->first('categorie_id') }}</span>

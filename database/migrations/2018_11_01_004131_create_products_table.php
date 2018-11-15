@@ -25,7 +25,7 @@ class CreateProductsTable extends Migration
             $table->string('slug')->unique();
             $table->timestamps();
             //foreign-keys
-            $table->foreign('subcategorie_id')->references('id')->on('subcategories');
+            $table->foreign('subcategorie_id')->references('id')->on('subcategories')->onDelete('cascade');
         });
     }
 

@@ -18,7 +18,7 @@
 				<option id="option-{{ $categorie->id }}" value="{{ $categorie->id }}" data-icon="{{ asset('svg/material-icons/baseline-'.$categorie->icon.'-24px.svg') }}">{{ $categorie->name }}</option>
 				@endforeach
 			</select>
-			<label>Icono</label>
+			<label>Categoría</label>
 			@if ($errors->has('categorie_id'))
 			<div class="card-panel teal">
 				<span class="white-text">{{ $errors->first('categorie_id') }}</span>
@@ -46,5 +46,6 @@
 </script>
 @endsection
 @section('extraimports')
+<script src="{{ asset('js/floating-button.js') }}"></script>
 <script src="{{ asset('js/categorie/create.js') }}"></script>
 @endsection

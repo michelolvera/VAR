@@ -26,11 +26,11 @@
 	</tbody>
 </table>
 <div class="fixed-action-btn">
-	<a href="../categorie/create" class="btn-floating btn-large red">
+	<a href="categorie/create" class="btn-floating btn-large red">
 		<i class="large material-icons">mode_edit</i>
 	</a>
 </div>
 @endsection
 @section('extraimports')
-<script src="{{ asset('js/categorie/index.js') }}"></script>
+<script src="{{ asset('js/floating-button.js') }}"></script>
 @endsection

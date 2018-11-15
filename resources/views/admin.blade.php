@@ -8,25 +8,25 @@
 		</a>
 	</li>
 	<li>
-		<a href="/categories">
+		<a href="/categorie">
 			<i class="material-icons">filter_list</i>
 			Gestionar categorías
 		</a>
 	</li>
 	<li>
-		<a href="/subcategories">
+		<a href="/subcategorie">
 			<i class="material-icons">filter_list</i>
 			Gestionar subcategorías
 		</a>
 	</li>
 	<li>
-		<a href="/slides">
+		<a href="/slide">
 			<i class="material-icons">collections</i>
 			Gestionar slides
 		</a>
 	</li>
 	<li>
-		<a href="/users">
+		<a href="/user">
 			<i class="material-icons">supervised_user_circle</i>
 			Gestionar usuarios
 		</a>

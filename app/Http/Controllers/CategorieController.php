@@ -53,7 +53,7 @@ class CategorieController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \ArticulosReligiosos\Product  $product
+     * @param  \ArticulosReligiosos\Categorie  $categorie
      * @return \Illuminate\Http\Response
      */
     public function show(Categorie $categorie)

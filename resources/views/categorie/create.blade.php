@@ -13,7 +13,7 @@
 			@endif
 		</div>
 		<div class="input-field col s12 m6">
-			<select id="icon" class="icon" name="icon" value="{{ $categorie->icon }}" required>
+			<select id="icon" class="icon" name="icon" value="{{ old('icon') }}" required>
 				<option value="beach_access" data-icon="{{ asset('svg/material-icons/baseline-beach_access-24px.svg') }}">Paraguas</option>
 				<option value="book" data-icon="{{ asset('svg/material-icons/baseline-book-24px.svg') }}">Libro</option>
 				<option value="card_travel" data-icon="{{ asset('svg/material-icons/baseline-card_travel-24px.svg') }}">Maleta</option>

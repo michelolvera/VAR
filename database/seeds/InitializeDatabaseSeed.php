@@ -26,7 +26,7 @@ class InitializeDatabaseSeed extends Seeder
     public function run()
     {
         //Crear costo de envio
-        $app_config = new App_config(['shipping_cost' => 100, 'carousel_products' => 10, 'ramdom_products' => 12]);
+        $app_config = new App_config(['shipping_cost' => 100, 'carousel_products' => 10, 'ramdom_products' => 12, 'store_name' => 'Articulos Religiosos']);
         $app_config->save();
 
         //Crear usuario

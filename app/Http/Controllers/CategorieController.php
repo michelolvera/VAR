@@ -21,7 +21,8 @@ class CategorieController extends Controller
             });
             return response()->json($categories, 200);
         }
-        return "Vista de categoria";
+        $categories = Categorie::all()->sortBy('name');
+        return view('categorie.index', compact('categories'));;
     }
 
     /**
@@ -31,7 +32,7 @@ class CategorieController extends Controller
      */
     public function create()
     {
-        //
+        return view('categorie.create');
     }
 
     /**
@@ -64,7 +65,7 @@ class CategorieController extends Controller
      */
     public function edit(Categorie $categorie)
     {
-        //
+        return $categorie;
     }
 
     /**

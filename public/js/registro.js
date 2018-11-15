@@ -1,7 +1,7 @@
 $(document).ready(function() {
 	$.ajax({
 		method: "get",
-		url: "../countrie",
+		url: "countrie/",
 		dataType: "json"
 	})
 	.done(function (jsonObject) {
@@ -19,7 +19,7 @@ $(document).ready(function() {
 function update_state(){
 	$.ajax({
 		method: "get",
-		url: "../state/",
+		url: "state/",
 		data: {
 			countrie_id: $('#countrie_id').val()
 		},

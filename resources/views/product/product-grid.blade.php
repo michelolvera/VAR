@@ -3,7 +3,7 @@
 	<div class="col s12 m6 l3">
 		<div class="card">
 			<div class="card-image">
-				<img src="../img/{{ $product->product_img_names()->first()->name }}">
+				<img src="img/{{ $product->product_img_names()->first()->name }}">
 				<span class="card-title">{{ $product->name }}</span>
 			</div>
 			<div class="card-content">

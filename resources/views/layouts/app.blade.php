@@ -41,7 +41,7 @@
                 </div>
             </nav>
         </div>
-        <ul class="sidenav" id="menu-side">
+        <ul class="sidenav" id="menu-side" style="height: 100%;">
             <li>
                 <div class="user-view">
                     <div class="background">

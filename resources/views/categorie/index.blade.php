@@ -15,7 +15,11 @@
 			<td><i class="material-icons">{{ $categorie->icon }}</i></td>
 			<td>
 				<a href="categorie/{{ $categorie->slug }}/edit" class="waves-effect waves-light btn"><i class="material-icons left">edit</i>Editar</a>
-				<a href="#" class="red waves-effect waves-light btn" style="margin-left: 0.5em"><i class="material-icons left">delete</i>Eliminar</a>
+				<a id="btn_eliminar" href="#" onclick="event.preventDefault(); document.getElementById('delete-form-{{ $categorie->slug }}').submit();" class="red waves-effect waves-light btn" style="margin-left: 0.5em"><i class="material-icons left">delete</i>Eliminar</a>
+				<form id="delete-form-{{ $categorie->slug }}" action="categorie/{{ $categorie->slug }}" method="POST" style="display: none;">
+					@method('DELETE')
+					@csrf
+				</form>
 			</td>
 		</tr>
 		@endforeach

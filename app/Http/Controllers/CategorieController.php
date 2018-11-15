@@ -4,6 +4,7 @@ namespace ArticulosReligiosos\Http\Controllers;
 
 use ArticulosReligiosos\Categorie;
 use Illuminate\Http\Request;
+use ArticulosReligiosos\Http\Requests\CategorieRequest;
 
 class CategorieController extends Controller
 {
@@ -15,10 +16,7 @@ class CategorieController extends Controller
     public function index(Request $request)
     {
         if($request->ajax()){
-            $categories = Categorie::all();
-            $categories->transform(function ($item, $key){
-                return $item->only(['id', 'name', 'icon', 'slug']);
-            });
+            $categories = Categorie::select('name', 'icon', 'slug')->orderBy('name')->get();
             return response()->json($categories, 200);
         }
         $categories = Categorie::all()->sortBy('name');
@@ -41,15 +39,21 @@ class CategorieController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CategorieRequest $request)
     {
-        //
+        Categorie::create([
+            'name' => $request->name,
+            'icon' => $request->icon,
+            'slug' => str_replace(' ', '-', $request->name).'-'.time(),
+        ]);
+        $categories = Categorie::all()->sortBy('name');
+        return view('categorie.index', compact('categories'));
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \ArticulosReligiosos\Categorie  $categorie
+     * @param  \ArticulosReligiosos\Product  $product
      * @return \Illuminate\Http\Response
      */
     public function show(Categorie $categorie)
@@ -65,7 +69,7 @@ class CategorieController extends Controller
      */
     public function edit(Categorie $categorie)
     {
-        return $categorie;
+        return view('categorie.edit', compact('categorie'));
     }
 
     /**
@@ -75,9 +79,12 @@ class CategorieController extends Controller
      * @param  \ArticulosReligiosos\Categorie  $categorie
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Categorie $categorie)
+    public function update(CategorieRequest $request, Categorie $categorie)
     {
-        //
+        $categorie->fill($request->all());
+        $categorie->save();
+        $categories = Categorie::all()->sortBy('name');
+        return redirect('categorie/');
     }
 
     /**
@@ -88,6 +95,7 @@ class CategorieController extends Controller
      */
     public function destroy(Categorie $categorie)
     {
-        //
+        $categorie->delete();
+        return redirect('categorie/');
     }
 }

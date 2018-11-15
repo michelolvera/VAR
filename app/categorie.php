@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Categorie extends Model
 {
+    protected $fillable = [
+        'name', 'icon', 'slug',
+    ];
+
     /**
     * Get the route key for the model.
     *

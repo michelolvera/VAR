@@ -5,6 +5,7 @@ namespace ArticulosReligiosos\Http\Controllers;
 use ArticulosReligiosos\Subcategorie;
 use ArticulosReligiosos\Categorie;
 use Illuminate\Http\Request;
+use ArticulosReligiosos\Http\Requests\SubcategorieRequest;
 
 class SubcategorieController extends Controller
 {
@@ -26,7 +27,8 @@ class SubcategorieController extends Controller
             return response()->json($subcategorie, 200);
         }
         //Si la solicitud se hace mediante HTTP, se retonara una vista.
-        return "Vista de subcategorias ";
+        $subcategories = Subcategorie::all()->sortBy('name');
+        return view('subcategorie.index', compact('subcategories'));
     }
 
     /**
@@ -36,7 +38,8 @@ class SubcategorieController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Categorie::all()->sortBy('name');
+        return view('subcategorie.create', compact('categories'));
     }
 
     /**
@@ -45,9 +48,14 @@ class SubcategorieController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SubcategorieRequest $request)
     {
-        //
+        Categorie::find($request->categorie_id)->subcategories()->save(new Subcategorie([
+            'name' => $request->name,
+            'slug' => str_replace(' ', '-', $request->name).'-'.time(),
+        ]));
+        $subcategories = Subcategorie::all()->sortBy('name');
+        return view('subcategorie.index', compact('subcategories'));
     }
 
     /**
@@ -69,7 +77,8 @@ class SubcategorieController extends Controller
      */
     public function edit(Subcategorie $subcategorie)
     {
-        //
+        $categories = Categorie::all()->sortBy('name');
+        return view('subcategorie.edit', compact('subcategorie', 'categories'));
     }
 
     /**
@@ -81,7 +90,9 @@ class SubcategorieController extends Controller
      */
     public function update(Request $request, Subcategorie $subcategorie)
     {
-        //
+        $subcategorie->fill($request->all());
+        $subcategorie->save();
+        return redirect('categorie/');
     }
 
     /**
@@ -92,6 +103,7 @@ class SubcategorieController extends Controller
      */
     public function destroy(Subcategorie $subcategorie)
     {
-        //
+        $subcategorie->delete();
+        return redirect('subcategorie/');
     }
 }

@@ -19,4 +19,12 @@ $(document).ready(function() {
 		let instance = M.Sidenav.getInstance(elem);
 		instance.open();
 	})
+	$('#btn_shopping').click(function( event ) {
+		event.preventDefault();
+		let elem = document.getElementById("modal_shopping");
+		let instance = M.Modal.getInstance(elem);
+		instance.open();
+	})
+	
+	$('.modal').modal();
 });

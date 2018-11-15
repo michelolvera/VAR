@@ -83,7 +83,6 @@ class CategorieController extends Controller
     {
         $categorie->fill($request->all());
         $categorie->save();
-        $categories = Categorie::all()->sortBy('name');
         return redirect('categorie/');
     }
 

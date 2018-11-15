@@ -94,14 +94,23 @@
                 </a>
             </li>
             @if (Auth::check())
-                @if (Auth::user()->admin)
-                    @include('admin')
-                @endif
+            @if (Auth::user()->admin)
+            @include('admin')
+            @endif
             @endif
         </ul>
         <main class="container" style="padding: 1em;">
             @yield('content')
         </main>
+        <div id="modal_shopping" class="modal bottom-sheet">
+            <div class="modal-content">
+                <h4>Carrito de compras</h4>
+                <p>Lista</p>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Pagar ahora</a>
+            </div>
+        </div>
     </div>
 
     <!-- Scripts -->

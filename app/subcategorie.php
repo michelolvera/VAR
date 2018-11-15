@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Subcategorie extends Model
 {
+    protected $fillable = [
+        'name', 'slug',
+    ];
     /**
     * Get the route key for the model.
     *
@@ -17,7 +20,7 @@ class Subcategorie extends Model
     }
     
     public function categorie() {
-    	return $this->belongsTo('ArticulosReligiosos\Categories');
+    	return $this->belongsTo('ArticulosReligiosos\Categorie');
     }
 
     public function products(){

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-<form method="POST" action="../../categorie">
+<form method="POST" action="/categorie">
 	@csrf
 	<div class="row">
 		<div class="input-field col s12 m6">

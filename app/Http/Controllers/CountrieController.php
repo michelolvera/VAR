@@ -15,13 +15,11 @@ class CountrieController extends Controller
     public function index(Request $request)
     {
         if($request->ajax()){
-            $countries = Countrie::all();
-            $countries->transform(function ($item, $key){
-                return $item->only(['id', 'name']);
-            });
-            return response()->json($countries, 200);
+            $countries = Countrie::select('id', 'name')->orderBy('name')->get();
+            return response()->json($categories, 200);
         }
-        return "Countrie View";
+        $countries = Countrie::all()->sortBy('name');
+        return view('countrie.index', compact('countries'));;
     }
 
     /**
@@ -31,7 +29,7 @@ class CountrieController extends Controller
      */
     public function create()
     {
-        //
+        return view('countrie.create');
     }
 
     /**
@@ -42,7 +40,12 @@ class CountrieController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Countrie::create([
+            'name' => $request->name
+
+        ]);
+        $countries = Countrie::all()->sortBy('name');
+        return view('countrie.index', compact('countries'));
     }
 
     /**
@@ -64,7 +67,7 @@ class CountrieController extends Controller
      */
     public function edit(Countrie $countrie)
     {
-        //
+        return view('countrie.edit', compact('countrie'));
     }
 
     /**
@@ -76,7 +79,9 @@ class CountrieController extends Controller
      */
     public function update(Request $request, Countrie $countrie)
     {
-        //
+        $countrie->fill($request->all());
+        $countrie->save();
+        return redirect('countrie/');
     }
 
     /**
@@ -87,6 +92,7 @@ class CountrieController extends Controller
      */
     public function destroy(Countrie $countrie)
     {
-        //
+        $countrie->delete();
+        return redirect('countrie/');
     }
 }

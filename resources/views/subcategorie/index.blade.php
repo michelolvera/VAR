@@ -15,7 +15,7 @@
 			<td>{{ $subcategorie->categorie()->first()->name }}</td>
 			<td>
 				<a href="subcategorie/{{ $subcategorie->slug }}/edit" class="waves-effect waves-light btn"><i class="material-icons left">edit</i>Editar</a>
-				<a id="btn_eliminar" href="#" onclick="event.preventDefault(); document.getElementById('delete-form-{{ $subcategorie->slug }}').submit();" class="red waves-effect waves-light btn" style="margin-left: 0.5em"><i class="material-icons left">delete</i>Eliminar</a>
+				<a id="btn_eliminar" href="#" onclick="event.preventDefault(); delete_form('{{ $subcategorie->slug }}');" class="red waves-effect waves-light btn" style="margin-left: 0.5em"><i class="material-icons left">delete</i>Eliminar</a>
 				<form id="delete-form-{{ $subcategorie->slug }}" action="subcategorie/{{ $subcategorie->slug }}" method="POST" style="display: none;">
 					@method('DELETE')
 					@csrf
@@ -33,4 +33,5 @@
 @endsection
 @section('extraimports')
 <script src="{{ asset('js/categorie/index.js') }}"></script>
+<script src="{{ asset('js/subcategorie/delete.js') }}"></script>
 @endsection

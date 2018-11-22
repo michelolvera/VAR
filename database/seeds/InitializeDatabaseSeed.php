@@ -59,7 +59,7 @@ class InitializeDatabaseSeed extends Seeder
         $categorie->save();
         $subcategorie = new Subcategorie(['name' => 'Biblias', 'slug' => 'biblias']);
         $categorie->subcategories()->save($subcategorie);
-        $product = new Product(['name' => 'Biblia Arcoiris', 'description' => 'Biblia completa y explicada.', 'price' => 655.32, 'discount_percent' => 20, 'quantity' => 250,'pinned' => true, 'slug' => 'biblia-arcoiris']);
+        $product = new Product(['name' => 'Biblia Arcoiris', 'description' => 'La Biblia de Estudio Arco Iris cuenta con un sistema único de para identificar 12 temas importantes en las Escrituras: Dios, amor, discipulado, fe, pecado, Satanás, salvación, familia, testimonio, mandamientos, historia y profecía.', 'price' => 655.32, 'discount_percent' => 20, 'quantity' => 250,'pinned' => true, 'slug' => 'biblia-arcoiris']);
         $subcategorie->products()->save($product);
 
         //Crear nombre de imagen de producto

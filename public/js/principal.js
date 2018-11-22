@@ -1,7 +1,7 @@
 $(document).ready(function() {
 	$.ajax({
 		method: "get",
-		url: "../categorie/",
+		url: "/categorie",
 		dataType: "json"
 	})
 	.done(function (jsonObject) {

@@ -8,6 +8,7 @@ use ArticulosReligiosos\Subcategorie;
 use ArticulosReligiosos\Product_img_name;
 use Illuminate\Http\Request;
 use ArticulosReligiosos\Http\Requests\StoreProductRequest;
+use ArticulosReligiosos\Http\Requests\EditProductRequest;
 use \Gumlet\ImageResize;
 
 class ProductController extends Controller
@@ -17,6 +18,7 @@ class ProductController extends Controller
         $this->middleware('auth')->except('index', 'show');
         $this->middleware('check.admin')->except('index', 'show');
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -59,7 +61,7 @@ class ProductController extends Controller
         Subcategorie::find($request->subcategorie_id)->products()->save($product);
         $count = 0;
         foreach ($request->pictures as $picture) {
-            $name = $product->slug.'_'.$count.'.'.$picture->getClientOriginalExtension();
+            $name = time().$product->slug.'_'.$count.'.'.$picture->getClientOriginalExtension();
             $picture->move(public_path().'/img/', $name);
             //Convertir imagenes a 2:3 (600*900 preferente)  y miniatura de 1:1 (300*300 preferente) cuadrada
             $image = new ImageResize(public_path().'/img/'.$name);
@@ -67,12 +69,12 @@ class ProductController extends Controller
             switch ($request->img_opt) {
                 case 0:
                     //Rellenar
-                    $image->crop(600, 900, $allow_enlarge = True);                    ;
-                    break;
+                $image->crop(600, 900, $allow_enlarge = True);                    ;
+                break;
                 case 1:
                     //Expandir
-                    $image->resize(600, 900, $allow_enlarge = True);
-                    break;
+                $image->resize(600, 900, $allow_enlarge = True);
+                break;
             }
             $image->save(public_path().'/img/'.$name);
             $imagesquare->crop(300, 300)->save(public_path().'/img/'.'crop'.$name);
@@ -105,7 +107,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        return view('product.edit', compact('product'));
     }
 
     /**
@@ -115,9 +117,49 @@ class ProductController extends Controller
      * @param  \ArticulosReligiosos\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(EditProductRequest $request, Product $product)
     {
-        //
+        //Actualizar datos del producto
+        $product->name = $request->name;
+        $product->description = $request->description;
+        $product->price = $request->price;
+        $product->discount_percent = $request->discount_percent;
+        $product->quantity = $request->quantity;
+        foreach ($product->product_img_names()->get() as $img) {
+            if($request->input(str_replace('.', '_', $img->name))!= null){
+                if (unlink(public_path().'/img/'.$img->name) && unlink(public_path().'/img/crop'.$img->name))
+                    $img->delete();
+            }
+        }
+        $count = 0;
+        if ($request->pictures != null){
+            foreach ($request->pictures as $picture) {
+                $name = time().$product->slug.'_'.$count.'.'.$picture->getClientOriginalExtension();
+                $picture->move(public_path().'/img/', $name);
+                //Convertir imagenes a 2:3 (600*900 preferente)  y miniatura de 1:1 (300*300 preferente) cuadrada
+                $image = new ImageResize(public_path().'/img/'.$name);
+                $imagesquare = new ImageResize(public_path().'/img/'.$name);
+                switch ($request->img_opt) {
+                    case 0:
+                    //Rellenar
+                    $image->crop(600, 900, $allow_enlarge = True);                    ;
+                    break;
+                    case 1:
+                    //Expandir
+                    $image->resize(600, 900, $allow_enlarge = True);
+                    break;
+                }
+                $image->save(public_path().'/img/'.$name);
+                $imagesquare->crop(300, 300)->save(public_path().'/img/'.'crop'.$name);
+                $product_img_name = new Product_img_name([
+                    'name' => $name
+                ]);
+                $product->product_img_names()->save($product_img_name);
+                $count++;
+            }
+        }
+        $product->save();
+        return view('product.viewProduct', compact('product'));
     }
 
     /**
@@ -128,6 +170,11 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        foreach ($product->product_img_names()->get() as $img) {
+            if (unlink(public_path().'/img/'.$img->name) && unlink(public_path().'/img/crop'.$img->name))
+                $img->delete();
+        }
+        $product->delete();
+        return redirect('product/');
     }
 }

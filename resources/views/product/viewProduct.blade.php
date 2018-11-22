@@ -16,20 +16,20 @@
         @endif
     </div>
     <div class="col s12 m6">
-       <h4 style="font-weight: bold;">{{ $product->name }}</h4>
+       <p style="font-weight: bold;">{{ $product->name }}</p>
        @if ($product->discount_percent>0)
-       <h6 style="font-weight: bold;">Precio: <span style="color:#993333;text-decoration: line-through;">${{ $product->price }}</span></h6>
-       <h6 style="font-weight: bold;">Descuento: <span style="color:#993333">{{ $product->discount_percent }}%</span></h6>
-       <h6 style="font-weight: bold;">Precio con descuento: <span style="color:#993333">${{ ($product->price)-(($product->price)*(($product->discount_percent)/100)) }}</span></h6>
+       <p style="font-weight: bold;">Precio: <span style="color:#993333;text-decoration: line-through;">${{ $product->price }}</span></p>
+       <p style="font-weight: bold;">Descuento: <span style="color:#993333">{{ $product->discount_percent }}%</span></p>
+       <p style="font-weight: bold;">Precio con descuento: <span style="color:#993333">${{ ($product->price)-(($product->price)*(($product->discount_percent)/100)) }}</span></p>
        @else
-       <h6 style="font-weight: bold;">Precio: <span style="color:#993333;">${{ $product->price }}</span></h6>
+       <p style="font-weight: bold;">Precio: <span style="color:#993333;">${{ $product->price }}</span></p>
        @endif
-       <h6><span style="color:green">{{ $product->quantity }}</span> disponibles.</h6>
+       <p><span style="color:green">{{ $product->quantity }}</span> disponibles.</p>
        <div class="divider"></div>
-       <h5>{{ $product->description }}</h5>
+       <p style="text-align: justify;">{{ $product->description }}</p>
        <div class="divider"></div>
        <div class="right">
-        <a class="waves-effect waves-light btn"><i class="material-icons right">add_shopping_cart</i>Agregar al carrito</a>
+        <a class="waves-effect waves-light btn" style="margin-top: 1em;"><i class="material-icons right">add_shopping_cart</i>Agregar al carrito</a>
     </div>
 </div>
 <div id="comentarios" class="row">

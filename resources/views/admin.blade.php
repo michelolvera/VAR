@@ -20,6 +20,12 @@
 		</a>
 	</li>
 	<li>
+		<a href="/countrie">
+			<i class="material-icons">add_location</i>
+			Gestionar países
+		</a>
+	</li>
+	<li>
 		<a href="/slide">
 			<i class="material-icons">collections</i>
 			Gestionar slides

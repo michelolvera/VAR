@@ -13,7 +13,7 @@
     <div id="app">
         <div class="navbar-fixed">
             <nav>
-                <div class="nav-wrapper">
+                <div class="nav-wrapper blue lighten-4">
                     <a href="#" class="brand-logo center">VAR</a>
                     <ul id="nav-mobile" class="left">
                         <li><a id="btn_sidenav" href="#"><i class="material-icons">menu</i></a></li>
@@ -44,12 +44,10 @@
         <ul class="sidenav" id="menu-side" style="height: 100%;">
             <li>
                 <div class="user-view">
-                    <div class="background">
-                        <img src="{{ asset('svg/403.svg') }}"
-                        alt="">
+                    <div class="background" style="background: linear-gradient(to top, #bbdefb,rgb(34, 119, 183) 100%);}">
                     </div>
                     <a href="#">
-                        <i class="material-icons medium">account_circle</i>
+                        <i class="material-icons medium" style="color: #FFFFFF;">account_circle</i>
                     </a>
                     @guest
                     <a href="{{ route('login') }}">
@@ -80,7 +78,7 @@
                 </a>
             </li>
             <li>
-                <a href="product/">
+                <a href="/product">
                     <i class="material-icons">shop</i>
                     Productos
                 </a>

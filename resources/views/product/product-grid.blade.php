@@ -1,7 +1,7 @@
 <div id="products" class="row">
 	@foreach ($products as $product)
 	<div class="col s12 m6 l3">
-		<div class="card">
+		<div class="card hoverable large" style="height: 590px;">
 			<div class="card-image">
 				<img src="{{ asset('img/'.$product->product_img_names()->first()->name) }}">
 				<span class="card-title">{{ $product->name }}</span>

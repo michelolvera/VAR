@@ -1,23 +1,22 @@
 $(document).ready(function() {
-	$('#categorie_id').change(update_subcategorie());
-	$('#slug').on('keypress', function(e) {
-        if (e.which == 32)
-            return false;
-    });
+	$('#categorie_id').change(function (event){
+		update_subcategorie();
+	});
+	update_subcategorie();
 });
 
 function update_subcategorie(){
 	$.ajax({
 		method: "get",
-		url: "../subcategorie",
+		url: "/subcategorie",
 		data: {
 			categorie_id: $('#categorie_id').val()
 		},
 		dataType: "json"
 	})
 	.done(function (jsonObject) {
+		$('#subcategorie_id').empty();
 		jsonObject.forEach(row => {
-			$('#subcategorie_id').empty();
 			$('#subcategorie_id').append('<option value="'+row['id']+'">'+row['name']+'</option>');
 		});
 	})

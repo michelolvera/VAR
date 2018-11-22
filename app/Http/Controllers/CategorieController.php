@@ -3,6 +3,7 @@
 namespace ArticulosReligiosos\Http\Controllers;
 
 use ArticulosReligiosos\Categorie;
+use ArticulosReligiosos\Subcategorie;
 use Illuminate\Http\Request;
 use ArticulosReligiosos\Http\Requests\CategorieRequest;
 
@@ -41,11 +42,15 @@ class CategorieController extends Controller
      */
     public function store(CategorieRequest $request)
     {
-        Categorie::create([
+        $categorie = Categorie::create([
             'name' => $request->name,
             'icon' => $request->icon,
             'slug' => str_replace(' ', '-', $request->name).'-'.time(),
         ]);
+        $categorie->subcategories()->save(new Subcategorie([
+            'name' => 'Sin subcategoría',
+            'slug' => str_replace(' ', '-', 'Sin subcategoría').'-'.time(),
+        ]));
         $categories = Categorie::all()->sortBy('name');
         return view('categorie.index', compact('categories'));
     }

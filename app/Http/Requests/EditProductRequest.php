@@ -1,5 +1,7 @@
 <?php
-
+/*
+    Request que se encarga de la validacion de datos para la edicion de producto.
+*/
 namespace ArticulosReligiosos\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
@@ -23,6 +25,9 @@ class EditProductRequest extends FormRequest
      */
     public function rules()
     {
+        /*
+            Verifica que todos los parametros necesarios sean el tipo de valores correctos.
+        */
         return [
             'name' => 'required|string|min: 5',
             'description' => 'required|string|min: 5',

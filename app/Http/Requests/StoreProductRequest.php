@@ -1,5 +1,7 @@
 <?php
-
+/*
+    Request que verifica que los datos para almacenar un producto sean correctos.
+*/
 namespace ArticulosReligiosos\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
@@ -23,6 +25,9 @@ class StoreProductRequest extends FormRequest
      */
     public function rules()
     {
+        /*
+            Verifica cada tipo de dato y sus diferentes condiciones admitidas.
+        */
         return [
             'name' => 'required|string|min: 5',
             'description' => 'required|string|min: 5',

@@ -1,5 +1,5 @@
 <?php
-
+//Controller que se encarga de la pagina principal.
 namespace ArticulosReligiosos\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -18,6 +18,9 @@ class HomeController extends Controller
      */
     public function index()
     {
+        /*
+            Retorna la vista home con una lista de slides, descuentos, destacados, mas vendidos y productos aleatorios.
+        */
         $config = App_config::all()->first();
     	$slides = Slide::select('redirect', 'img_url', 'title', 'text')->orderBy('updated_at', 'desc')->get();
         $discounts = Product::where('discount_percent', '>', 0)->orderBy('discount_percent', 'desc')->take($config->carousel_products)->get();

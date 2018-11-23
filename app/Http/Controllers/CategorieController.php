@@ -1,5 +1,7 @@
 <?php
-
+/*
+    Controller que se encarga de todos el CRUD de los productos, cada funcion de este define su accion.
+*/
 namespace ArticulosReligiosos\Http\Controllers;
 
 use ArticulosReligiosos\Categorie;
@@ -16,11 +18,13 @@ class CategorieController extends Controller
      */
     public function index(Request $request)
     {
+        //En caso de ser una solicitud AJAX, se retornaran las categorias en forma de JSON
         if($request->ajax()){
             $categories = Categorie::select('name', 'icon', 'slug')->orderBy('name')->get();
             return response()->json($categories, 200);
         }
         $categories = Categorie::all()->sortBy('name');
+        //Se retornara una vista y a esta se le adjuntaran las categorias.
         return view('categorie.index', compact('categories'));;
     }
 
@@ -31,6 +35,7 @@ class CategorieController extends Controller
      */
     public function create()
     {
+        //Se retorna el formulario para crear categoria
         return view('categorie.create');
     }
 
@@ -42,6 +47,11 @@ class CategorieController extends Controller
      */
     public function store(CategorieRequest $request)
     {
+        /*
+            Se crea una categoria con los datos del Request
+            Se crea una subcategoria llamada 'Sin subcategoría',
+            solo en caso de que el producto a crear no tenga una categoria
+        */
         $categorie = Categorie::create([
             'name' => $request->name,
             'icon' => $request->icon,
@@ -74,6 +84,7 @@ class CategorieController extends Controller
      */
     public function edit(Categorie $categorie)
     {
+        //Regresa una vista a la cual se le adjunta la categoria especifica.
         return view('categorie.edit', compact('categorie'));
     }
 
@@ -86,6 +97,7 @@ class CategorieController extends Controller
      */
     public function update(CategorieRequest $request, Categorie $categorie)
     {
+        // Se actualiza la categoria con los datos del reuqest y se redirecciona a la lista de categorias.
         $categorie->fill($request->all());
         $categorie->save();
         return redirect('categorie/');
@@ -99,6 +111,7 @@ class CategorieController extends Controller
      */
     public function destroy(Categorie $categorie)
     {
+        //Elimina la subcategoria seleccionada y redirecciona a la lista de categorias.
         $categorie->delete();
         return redirect('categorie/');
     }

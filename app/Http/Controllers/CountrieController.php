@@ -1,5 +1,5 @@
 <?php
-
+//Controller que se encarga del CRUD de paises.
 namespace ArticulosReligiosos\Http\Controllers;
 
 use ArticulosReligiosos\Countrie;
@@ -14,10 +14,12 @@ class CountrieController extends Controller
      */
     public function index(Request $request)
     {
+        //En caso de ser una solicitud AJAX, regresa un JSON con la lista de paises
         if($request->ajax()){
             $countries = Countrie::select('id', 'name')->orderBy('name')->get();
             return response()->json($categories, 200);
         }
+        //Si es una solicitud de navegador se retorna una vusta con la lista de paises adjunta
         $countries = Countrie::all()->sortBy('name');
         return view('countrie.index', compact('countries'));;
     }
@@ -29,6 +31,7 @@ class CountrieController extends Controller
      */
     public function create()
     {
+        //Regresa una vista para crear un pais.
         return view('countrie.create');
     }
 
@@ -40,6 +43,7 @@ class CountrieController extends Controller
      */
     public function store(Request $request)
     {
+        //Crea un nuevo pais con los datos del request y regresa una vista con la lista de paises.
         Countrie::create([
             'name' => $request->name
 
@@ -67,6 +71,7 @@ class CountrieController extends Controller
      */
     public function edit(Countrie $countrie)
     {
+        //Regresa una vista con el formilario para editar el pais.
         return view('countrie.edit', compact('countrie'));
     }
 
@@ -79,6 +84,7 @@ class CountrieController extends Controller
      */
     public function update(Request $request, Countrie $countrie)
     {
+        //Actualiza el pais con los datos del request, retorna una redireccion a la lista de paises.
         $countrie->fill($request->all());
         $countrie->save();
         return redirect('countrie/');
@@ -92,6 +98,7 @@ class CountrieController extends Controller
      */
     public function destroy(Countrie $countrie)
     {
+        //Elimina un pais y redireccion a la lista de paises.
         $countrie->delete();
         return redirect('countrie/');
     }

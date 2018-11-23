@@ -1,5 +1,7 @@
 <?php
-
+/*
+    Middleware que verifica si el usuario que realiza la accion es un administrador.
+*/
 namespace ArticulosReligiosos\Http\Middleware;
 
 use Closure;

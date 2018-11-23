@@ -1,5 +1,5 @@
 <?php
-
+//Controller que se encarga del CRUD de Productos
 namespace ArticulosReligiosos\Http\Controllers;
 
 use ArticulosReligiosos\Product;
@@ -13,6 +13,7 @@ use \Gumlet\ImageResize;
 
 class ProductController extends Controller
 {
+    //Contructor que se basa en middleware de autentificacion y check.admin
     public function __construct()
     {
         $this->middleware('auth')->except('index', 'show');
@@ -26,6 +27,7 @@ class ProductController extends Controller
      */
     public function index()
     {
+        //Retorna la vista de productos con todos los productos adjuntos.
         $products = Product::all()->sortBy('name');
         return view('product.index', compact('products'));
     }
@@ -37,6 +39,7 @@ class ProductController extends Controller
      */
     public function create()
     {
+        //Retorna el formulatio de creacion del producto y adjunta las categorias.
         $categories = Categorie::select('id','name')->orderBy('name', 'desc')->get();
         return view('product.create', compact('categories'));
     }
@@ -49,6 +52,7 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
+        //Crea un producto con los datos del request
         $product = new Product([
             'name' => $request->name,
             'description' => $request->description,
@@ -58,8 +62,10 @@ class ProductController extends Controller
             'pinned' => ($request->pinned != null),
             'slug' => str_replace(' ', '-', $request->name).'-'.time(),
         ]);
+        //Se almacena un producto dentro de su subcategoria.
         Subcategorie::find($request->subcategorie_id)->products()->save($product);
         $count = 0;
+        //Almacena cada imagen.
         foreach ($request->pictures as $picture) {
             $name = time().$product->slug.'_'.$count.'.'.$picture->getClientOriginalExtension();
             $picture->move(public_path().'/img/', $name);
@@ -84,6 +90,7 @@ class ProductController extends Controller
             $product->product_img_names()->save($product_img_name);
             $count++;
         }
+        //Retorna la vista de productos con todos los productos como adjunto.
         $products = Product::all()->sortBy('name');
         return view('product.index', compact('products'));
     }
@@ -96,6 +103,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
+        //Retorna una vista que muestra los detalles del producto y se le adjunta el producto en si.
         return view('product.viewProduct', compact('product'));
     }
 
@@ -107,6 +115,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
+        //Retorna el formulario de edicion de producto.
         return view('product.edit', compact('product'));
     }
 
@@ -170,10 +179,12 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
+        //Elimina cada imagen del producto
         foreach ($product->product_img_names()->get() as $img) {
             if (unlink(public_path().'/img/'.$img->name) && unlink(public_path().'/img/crop'.$img->name))
                 $img->delete();
         }
+        //Elimina el producto y redirecciona a la lista de productos.
         $product->delete();
         return redirect('product/');
     }

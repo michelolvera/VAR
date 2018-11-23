@@ -1,5 +1,7 @@
 <?php
-
+/*
+    Request que verifica si los datos de el formulario de categoria es correcto.
+*/
 namespace ArticulosReligiosos\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
@@ -23,6 +25,10 @@ class CategorieRequest extends FormRequest
      */
     public function rules()
     {
+        /*
+            Verificar que name sea requerido, tipo string y de minimo 4 caracteres
+            Verificar que icon sea requerido y tipo string.
+        */
         return [
             'name' => 'required|string|min: 4',
             'icon' => 'required|string',

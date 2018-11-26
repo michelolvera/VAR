@@ -33,8 +33,85 @@
     </div>
 </div>
 <div id="comentarios" class="row">
-
+<div class="col s12 m12 divider"></div>
+<div class="col s12 m12 divider"></div>
+<h5 class="col s12 m12">Comentarios</h5>
+    @foreach ($comments as $comment)
+            <div class="col s12 m12">
+                @foreach ($users as $user)
+                    @if($user->id==$comment->cuid)
+                        <span style="font-weight: bold;">
+                            <i class="material-icons" >rate_review</i>
+                            {{$user->name}}:
+                        </span>
+                    @endif
+                @endforeach
+                <span>
+                    {{$comment->ct}}
+                </span>
+                
+                <div>
+                    @foreach ($users as $user)
+                        @if($user->id==$comment->ruid)
+                            <span style="color:gray;">
+                                <i class="material-icons">question_answer</i> 
+                            </span> 
+                            <span style="font-weight: bold;">
+                                {{$user->name}}:
+                            </span>
+                        @endif
+                    @endforeach
+                    <span>
+                        {{$comment->rt}}
+                    </span>
+                </div>
+                <div class="divider"></div>
+            </div>
+    @endforeach
 </div>
+
+
+
+
+
+
+
+<form method="POST" action="/comment">
+	@csrf
+	<div class="row">
+		<div class="input-field col s12 m12">
+        <h5 class="col s12 m12">¿Dudas o comentarios? Escríbelo aquí abajo!</h5>
+            <!--Investigando cómo obtener el nombre del usuario o: -->
+            <input name="title" type="text" value="" required>
+            <input name="user_id" style="display:none;" value="1">
+            <input name="product_id" style="display:none;" value="{{$product->id}}">
+			<input name="text" type="text" value="" required>
+		</div>
+	</div>
+	<div class="row center-align">
+		<div class="col s6">
+			<button type="submit" class="btn waves-effect waves-light">
+				Comentar
+				<i class="material-icons right">send</i>
+			</button>
+		</div>
+	</div>
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <div class="fixed-action-btn">
     <a class="btn-floating btn-large red">
         <i class="large material-icons">menu</i>

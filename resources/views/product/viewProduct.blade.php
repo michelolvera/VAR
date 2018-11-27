@@ -29,7 +29,7 @@
        <p style="text-align: justify;">{{ $product->description }}</p>
        <div class="divider"></div>
        <div class="right">
-        <a class="waves-effect waves-light btn" style="margin-top: 1em;"><i class="material-icons right">add_shopping_cart</i>Agregar al carrito</a>
+        <button class="waves-effect waves-light btn" style="margin-top: 1em;" onclick="agregarCarrito('{{ $product->slug }}')"><i class="material-icons right">add_shopping_cart</i>Agregar al carrito</button>
     </div>
 </div>
 <div id="comentarios" class="row">

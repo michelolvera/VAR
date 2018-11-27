@@ -8,3 +8,15 @@ $(document).ready(function(){
 		}
 	})
 });
+
+function agregarCarrito(slug){
+	let car = Cookies.getJSON('car');
+	if(car == undefined){
+		car = new Array();
+	}
+	car.push(slug);
+	Cookies.set('car', car);
+	let elem = document.getElementById("modal_shopping");
+	let instance = M.Modal.getInstance(elem);
+	instance.open();
+}

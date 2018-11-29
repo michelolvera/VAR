@@ -28,8 +28,8 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function domicile(){
-        return $this->hasOne('ArticulosReligiosos\Domicile');
+    public function domiciles(){
+        return $this->hasMany('ArticulosReligiosos\Domicile');
     }
 
     public function sales(){

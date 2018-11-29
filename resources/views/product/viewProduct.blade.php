@@ -29,12 +29,11 @@
        <p style="text-align: justify;">{{ $product->description }}</p>
        <div class="divider"></div>
        <div class="right">
-        <button class="waves-effect waves-light btn" style="margin-top: 1em;" onclick="agregarCarrito('{{ $product->slug }}')"><i class="material-icons right">add_shopping_cart</i>Agregar al carrito</button>
+        <button class="waves-effect waves-light btn" style="margin: 1em 0;" onclick="agregarCarrito('{{ $product->slug }}')"><i class="material-icons right">add_shopping_cart</i>Agregar al carrito</button>
     </div>
 </div>
 <div id="comentarios" class="row">
-<div class="col s12 m12 divider"></div>
-<div class="col s12 m12 divider"></div>
+<div class="divider"></div>
 <h5 class="col s12 m12">Comentarios</h5>
     @foreach ($comments as $comment)
             <div class="col s12 m12">

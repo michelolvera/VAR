@@ -153,8 +153,9 @@ class ProductController extends Controller
         $product->quantity = $request->quantity;
         foreach ($product->product_img_names()->get() as $img) {
             if($request->input(str_replace('.', '_', $img->name))!= null){
-                if (unlink(public_path().'/img/'.$img->name) && unlink(public_path().'/img/crop'.$img->name))
-                    $img->delete();
+                @unlink(public_path().'/img/'.$img->name);
+                @unlink(public_path().'/img/crop'.$img->name);
+                $img->delete();
             }
         }
         $count = 0;
@@ -198,8 +199,9 @@ class ProductController extends Controller
     {
         //Elimina cada imagen del producto
         foreach ($product->product_img_names()->get() as $img) {
-            if (unlink(public_path().'/img/'.$img->name) && unlink(public_path().'/img/crop'.$img->name))
-                $img->delete();
+            @unlink(public_path().'/img/'.$img->name);
+            @unlink(public_path().'/img/crop'.$img->name);
+            $img->delete();
         }
         //Elimina el producto y redirecciona a la lista de productos.
         $product->delete();

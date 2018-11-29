@@ -19,6 +19,7 @@ class CreateAppConfigsTable extends Migration
             $table->unsignedInteger('carousel_products');
             $table->unsignedInteger('ramdom_products');
             $table->string('store_name');
+            $table->string('store_logo');
             $table->timestamps();
         });
     }

@@ -25,7 +25,7 @@ class CategorieController extends Controller
         }
         $categories = Categorie::all()->sortBy('name');
         //Se retornara una vista y a esta se le adjuntaran las categorias.
-        return view('categorie.index', compact('categories'));;
+        return view('categorie.index', compact('categories'));
     }
 
     /**

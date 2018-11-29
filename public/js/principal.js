@@ -37,48 +37,52 @@ function datosProducto(slug){
 
 function abrirCarrito(){
 	let car = Cookies.getJSON('car');
-	let htmlString = "<ul class='collection'>";
-	for (let i = 0; i < car.length; i++) {
-		let productData = datosProducto(car[i].slug);
-		if(productData.name == undefined || productData.quantity == 0){
-			M.toast({html: 'Un producto se ha agotado y eliminado del carrito.'});
-			eliminarProductoCarrito(car[i].slug);
-			continue;
-		}else if (car[i].cantidad>productData.quantity){
-			car[i].cantidad=productData.quantity;
-			Cookies.set('car', car);
+	if (car == undefined || car.length == 0){
+		M.toast({html: 'No existe ningún producto en el carrito.'});
+	}else{
+		let htmlString = "<ul class='collection'>";
+		for (let i = 0; i < car.length; i++) {
+			let productData = datosProducto(car[i].slug);
+			if(productData.name == undefined || productData.quantity == 0){
+				M.toast({html: 'Un producto se ha agotado y eliminado del carrito.'});
+				eliminarProductoCarrito(car[i].slug);
+				continue;
+			}else if (car[i].cantidad>productData.quantity){
+				car[i].cantidad=productData.quantity;
+				Cookies.set('car', car);
+			}
+			let price;
+			htmlString+="<li class='collection-item avatar'>";
+			htmlString+="<div class='row'>";
+			htmlString+="<div class='col s6 m8'>";
+			htmlString+="<img src='/img/crop"+productData.img+"' class='circle'>";
+			htmlString+='<span class="title">'+productData.name+'</span>';
+			htmlString+='<p>'+productData.description+'</p>';
+			htmlString+="</div>";
+			htmlString+="<div class='col s6 m4'>";
+			htmlString+='<p>Precio: ';
+			price=productData.price;
+			if(productData.discount_percent > 0){
+				htmlString+='<span style="text-decoration:line-through;">$'+productData.price+'</span>';
+				htmlString+=' Descuento: $'+(productData.price*(1-productData.discount_percent/100)).toFixed(2)+'</p>';
+				price=productData.price*(1-productData.discount_percent/100);
+			}else
+			htmlString+=productData.price+'</p>';
+			htmlString+="<div class='input-field'><input id='input_"+car[i].slug+"' type='number' min='1' max'"+productData.quantity+"' value='"+car[i].cantidad+"' onchange='cambiarCantidadProducto("+'"'+car[i].slug+'"'+", this.value);'>";
+			htmlString+="<label for='input_"+car[i].slug+"'>Cantidad</label></div>";
+			htmlString+="<p>Total: $<span id='total_"+car[i].slug+"'>"+(car[i].cantidad*price).toFixed(2)+"</p>";
+			htmlString+='<button class="btn waves-effect waves-light red right" onclick="eliminarProductoCarrito('+"'"+car[i].slug+"'"+')">Eliminar<i class="material-icons right">delete</i></button>';
+			htmlString+="</div>";
+			htmlString+="</div>";
+			htmlString+="</li>";
 		}
-		let price;
-		htmlString+="<li class='collection-item avatar'>";
-		htmlString+="<div class='row'>";
-		htmlString+="<div class='col s6 m8'>";
-		htmlString+="<img src='/img/crop"+productData.img+"' class='circle'>";
-		htmlString+='<span class="title">'+productData.name+'</span>';
-		htmlString+='<p>'+productData.description+'</p>';
-		htmlString+="</div>";
-		htmlString+="<div class='col s6 m4'>";
-		htmlString+='<p>Precio: ';
-		price=productData.price;
-		if(productData.discount_percent > 0){
-			htmlString+='<span style="text-decoration:line-through;">$'+productData.price+'</span>';
-			htmlString+=' Descuento: $'+(productData.price*(1-productData.discount_percent/100)).toFixed(2)+'</p>';
-			price=productData.price*(1-productData.discount_percent/100);
-		}else
-		htmlString+=productData.price+'</p>';
-		htmlString+="<div class='input-field'><input id='input_"+car[i].slug+"' type='number' min='1' max'"+productData.quantity+"' value='"+car[i].cantidad+"' onchange='cambiarCantidadProducto("+'"'+car[i].slug+'"'+", this.value);'>";
-		htmlString+="<label for='input_"+car[i].slug+"'>Cantidad</label></div>";
-		htmlString+="<p>Total: $<span id='total_"+car[i].slug+"'>"+(car[i].cantidad*price).toFixed(2)+"</p>";
-		htmlString+='<button class="btn waves-effect waves-light red right" onclick="eliminarProductoCarrito('+"'"+car[i].slug+"'"+')">Eliminar<i class="material-icons right">delete</i></button>';
-		htmlString+="</div>";
-		htmlString+="</div>";
-		htmlString+="</li>";
+		htmlString+="</ul>";
+		$("#productlist").html(htmlString);
+		M.updateTextFields();
+		let elem = document.getElementById("modal_shopping");
+		let instance = M.Modal.getInstance(elem);
+		instance.open();
 	}
-	htmlString+="</ul>";
-	$("#productlist").html(htmlString);
-	M.updateTextFields();
-	let elem = document.getElementById("modal_shopping");
-	let instance = M.Modal.getInstance(elem);
-	instance.open();
 }
 
 function cambiarCantidadProducto(slug, cantidad){

@@ -105,8 +105,19 @@ class ProductController extends Controller
      * @param  \ArticulosReligiosos\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show(Product $product, Request $request)
     {
+        if($request->ajax()){
+            $response = collect([
+                'name' => $product->name,
+                'description' => $product->description,
+                'price' => $product->price,
+                'discount_percent' => $product->discount_percent,
+                'quantity' => $product->quantity,
+                'img' => $product->product_img_names()->first()->name,
+            ]);
+            return response()->json($response, 200);
+        }
         //Retorna una vista que muestra los detalles del producto y se le adjunta el producto en si.
         $users = User::all()->sortBy('id');
         $comments = DB::table('comments')->leftjoin('replies', 'comments.id', '=', 'replies.comment_id')->select('comments.user_id as cuid', 'comments.text as ct', 'replies.user_id as ruid', 'replies.text as rt')->where("product_id",$product->id)->get();

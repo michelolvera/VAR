@@ -108,8 +108,10 @@
         </main>
         <div id="modal_shopping" class="modal bottom-sheet">
             <div class="modal-content">
-                <h4>Carrito de compras</h4>
-                <p>Lista</p>
+                <h3 style="color: #1c9fb3; font-weight: 300;">Carrito de compras</h3>
+                <div id="productlist">
+
+                </div>
             </div>
             <div class="modal-footer">
                 <a href="#!" class="modal-close waves-effect waves-green btn-flat">Pagar ahora</a>

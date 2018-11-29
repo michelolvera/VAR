@@ -12,11 +12,19 @@ $(document).ready(function(){
 function agregarCarrito(slug){
 	let car = Cookies.getJSON('car');
 	if(car == undefined){
-		car = new Array();
+		car = [{slug:slug, cantidad:1}];
+	}else{
+		let encontrado = false;
+		for (let i = 0; i < car.length; i++) {
+			if(car[i].slug == slug){
+				car[i].cantidad++;
+				encontrado=true;
+				break;
+			}
+		}
+		if (!encontrado)
+			car.push({slug:slug, cantidad:1});
 	}
-	car.push(slug);
 	Cookies.set('car', car);
-	let elem = document.getElementById("modal_shopping");
-	let instance = M.Modal.getInstance(elem);
-	instance.open();
+	abrirCarrito();
 }

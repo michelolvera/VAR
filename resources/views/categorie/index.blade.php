@@ -12,7 +12,7 @@
 		@foreach ($categories as $categorie)
 		<tr>
 			<td>{{ $categorie->name }}</td>
-			<td><i class="material-icons">{{ $categorie->icon }}</i></td>
+			<td><i class="material-icons" style="color: {{ $categorie->css_color }}">{{ $categorie->icon }}</i></td>
 			<td>
 				<a href="categorie/{{ $categorie->slug }}/edit" class="waves-effect waves-light btn"><i class="material-icons left">edit</i>Editar</a>
 				<a id="btn_eliminar" href="#" onclick="event.preventDefault(); delete_form('{{ $categorie->slug }}');" class="red waves-effect waves-light btn" style="margin-left: 0.5em"><i class="material-icons left">delete</i>Eliminar</a>

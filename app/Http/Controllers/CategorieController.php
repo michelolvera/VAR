@@ -26,7 +26,7 @@ class CategorieController extends Controller
     {
         //En caso de ser una solicitud AJAX, se retornaran las categorias en forma de JSON
         if($request->ajax()){
-            $categories = Categorie::select('name', 'icon', 'slug')->orderBy('name')->get();
+            $categories = Categorie::select('name', 'icon', 'css_color', 'slug')->orderBy('name')->get();
             return response()->json($categories, 200);
         }
         if (!$request->user()->admin)
@@ -63,6 +63,7 @@ class CategorieController extends Controller
         $categorie = Categorie::create([
             'name' => $request->name,
             'icon' => $request->icon,
+            'css_color' => $request->css_color,
             'slug' => str_replace(' ', '-', $request->name).'-'.time(),
         ]);
         $categorie->subcategories()->save(new Subcategorie([

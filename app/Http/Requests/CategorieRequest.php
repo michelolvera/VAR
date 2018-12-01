@@ -32,6 +32,7 @@ class CategorieRequest extends FormRequest
         return [
             'name' => 'required|string|min: 4',
             'icon' => 'required|string',
+            'css_color' => 'required|string',
         ];
     }
 }

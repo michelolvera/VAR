@@ -14,6 +14,15 @@
 			@endif
 		</div>
 		<div class="input-field col s12 m6">
+			<input name="css_color" type="text" value="{{ $categorie->css_color }}" required>
+			<label for="css_color">Color CSS</label>
+			@if ($errors->has('css_color'))
+			<div class="card-panel teal">
+				<span class="white-text">{{ $errors->first('css_color') }}</span>
+			</div>
+			@endif
+		</div>
+		<div class="input-field col s12 m6">
 			<select id="icon" class="icon" name="icon" value="{{ $categorie->icon }}" required>
 				<option id="beach_access" value="beach_access" data-icon="{{ asset('svg/material-icons/baseline-beach_access-24px.svg') }}">Paraguas</option>
 				<option id="book" value="book" data-icon="{{ asset('svg/material-icons/baseline-book-24px.svg') }}">Libro</option>

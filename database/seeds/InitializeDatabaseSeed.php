@@ -64,7 +64,7 @@ class InitializeDatabaseSeed extends Seeder
         $domicile->save();
 
         //Crear producto junto con sus requisitos
-        $categorie = new Categorie(['name' => 'Libros', 'icon' => 'library_books', 'slug' => 'libros']);
+        $categorie = new Categorie(['name' => 'Libros', 'icon' => 'library_books', 'css_color' => 'blue', 'slug' => 'libros']);
         $categorie->save();
         $subcategorie = new Subcategorie(['name' => 'Biblias', 'slug' => 'biblias']);
         $categorie->subcategories()->save($subcategorie);

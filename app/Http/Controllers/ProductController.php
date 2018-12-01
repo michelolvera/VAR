@@ -13,7 +13,6 @@ use Illuminate\Http\Request;
 use ArticulosReligiosos\Http\Requests\StoreProductRequest;
 use ArticulosReligiosos\Http\Requests\EditProductRequest;
 use \Gumlet\ImageResize;
-use DB;
 
 class ProductController extends Controller
 {
@@ -118,10 +117,7 @@ class ProductController extends Controller
             ]);
             return response()->json($response, 200);
         }
-        //Retorna una vista que muestra los detalles del producto y se le adjunta el producto en si.
-        $users = User::all()->sortBy('id');
-        $comments = DB::table('comments')->leftjoin('replies', 'comments.id', '=', 'replies.comment_id')->select('comments.user_id as cuid', 'comments.text as ct', 'replies.user_id as ruid', 'replies.text as rt')->where("product_id",$product->id)->get();
-        return view('product.viewProduct', compact('product','comments','users'));
+        return view('product.viewProduct', compact('product'));
     }
 
     /**

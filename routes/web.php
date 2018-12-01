@@ -22,4 +22,3 @@ Route::resource('state', 'StateController');
 Route::resource('categorie', 'CategorieController');
 Route::resource('subcategorie', 'SubcategorieController');
 Route::resource('product', 'ProductController');
-Route::resource('comment', 'CommentsController');

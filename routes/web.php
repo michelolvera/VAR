@@ -15,6 +15,7 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('config', 'ConfigController@edit');
+Route::put('config', 'ConfigController@update');
 
 Route::resource('countrie', 'CountrieController');
 Route::resource('state', 'StateController');

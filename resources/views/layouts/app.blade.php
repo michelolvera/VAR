@@ -7,14 +7,14 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ ArticulosReligiosos\App_config::first()->store_name }}</title>
 </head>
 <body>
     <div id="app">
         <div class="navbar-fixed">
             <nav>
-                <div class="nav-wrapper blue lighten-4">
-                    <a href="#" class="brand-logo center">VAR</a>
+                <div class="nav-wrapper {{ ArticulosReligiosos\App_config::first()->nav_materialize_color }}">
+                    <a href="#" class="brand-logo center">{{ ArticulosReligiosos\App_config::first()->store_name }}</a>
                     <ul id="nav-mobile" class="left">
                         <li><a id="btn_sidenav" href="#"><i class="material-icons">menu</i></a></li>
                     </ul>
@@ -44,7 +44,7 @@
         <ul class="sidenav" id="menu-side" style="height: 100%;">
             <li>
                 <div class="user-view">
-                    <div class="background" style="background: linear-gradient(to top, #bbdefb,rgb(34, 119, 183) 100%);}">
+                    <div class="background" style="background: {{ ArticulosReligiosos\App_config::first()->side_background }}">
                     </div>
                     <a href="#">
                         <i class="material-icons medium" style="color: #FFFFFF;">account_circle</i>

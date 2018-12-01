@@ -18,8 +18,11 @@ class CreateAppConfigsTable extends Migration
             $table->unsignedDecimal('shipping_cost', 8, 2);
             $table->unsignedInteger('carousel_products');
             $table->unsignedInteger('ramdom_products');
-            $table->string('store_name');
+            $table->unsignedInteger('products_per_page');
             $table->string('store_logo');
+            $table->string('store_name');
+            $table->string('nav_materialize_color');
+            $table->string('side_background');
             $table->timestamps();
         });
     }

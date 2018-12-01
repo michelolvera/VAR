@@ -26,7 +26,16 @@ class InitializeDatabaseSeed extends Seeder
     public function run()
     {
         //Crear configuraciones iniciales
-        $app_config = new App_config(['shipping_cost' => 100, 'carousel_products' => 10, 'ramdom_products' => 12, 'store_name' => 'Articulos Religiosos', 'store_logo' => 'logo.svg']);
+        $app_config = new App_config([
+            'shipping_cost' => 100,
+            'carousel_products' => 10,
+            'ramdom_products' => 12,
+            'products_per_page' => 30,
+            'store_logo' => 'logo.svg',
+            'store_name' => 'VAR',
+            'nav_materialize_color' => 'blue lighten-4',
+            'side_background' => 'linear-gradient(to top, #bbdefb,rgb(34, 119, 183) 100%);'
+        ]);
         $app_config->save();
 
         //Crear usuario

@@ -3,10 +3,17 @@
 namespace ArticulosReligiosos\Http\Controllers;
 
 use ArticulosReligiosos\Countrie;
+use ArticulosReligiosos\Http\Requests\CountrieRequest;
 use Illuminate\Http\Request;
 
 class CountrieController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->except('index');
+        $this->middleware('check.admin')->except('index');
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -20,6 +27,8 @@ class CountrieController extends Controller
             return response()->json($categories, 200);
         }
         //Si es una solicitud de navegador se retorna una vusta con la lista de paises adjunta
+        if (!$request->user()->admin)
+            abort(401);
         $countries = Countrie::all()->sortBy('name');
         return view('countrie.index', compact('countries'));;
     }
@@ -41,7 +50,7 @@ class CountrieController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CountrieRequest $request)
     {
         //Crea un nuevo pais con los datos del request y regresa una vista con la lista de paises.
         Countrie::create([
@@ -82,7 +91,7 @@ class CountrieController extends Controller
      * @param  \ArticulosReligiosos\Countrie  $countrie
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Countrie $countrie)
+    public function update(CountrieRequest $request, Countrie $countrie)
     {
         //Actualiza el pais con los datos del request, retorna una redireccion a la lista de paises.
         $countrie->fill($request->all());

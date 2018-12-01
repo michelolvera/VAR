@@ -17,6 +17,8 @@ class CheckAdmin
      */
     public function handle($request, Closure $next)
     {
-        return $next($request);
+        if ($request->user()->admin)
+            return $next($request);
+        abort(401);
     }
 }

@@ -2,6 +2,12 @@
 	<div class="divider"></div>
 	<li><a class="subheader">Administración</a></li>
 	<li>
+		<a href="/config">
+			<i class="material-icons">settings</i>
+			Configuración de tienda
+		</a>
+	</li>
+	<li>
 		<a href="/product">
 			<i class="material-icons">store</i>
 			Gestionar productos
@@ -23,6 +29,12 @@
 		<a href="/countrie">
 			<i class="material-icons">add_location</i>
 			Gestionar países
+		</a>
+	</li>
+	<li>
+		<a href="/state">
+			<i class="material-icons">add_location</i>
+			Gestionar estados
 		</a>
 	</li>
 	<li>

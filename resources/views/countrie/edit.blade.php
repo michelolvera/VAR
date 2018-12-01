@@ -23,7 +23,7 @@
 		</div>
 		<div class="col s6">
 			<button type="submit" class="btn waves-effect waves-light">
-				Registrar país
+				Actualizar país
 				<i class="material-icons right">send</i>
 			</button>
 		</div>

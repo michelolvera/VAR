@@ -11,6 +11,12 @@ use ArticulosReligiosos\Http\Requests\CategorieRequest;
 
 class CategorieController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->except('index');
+        $this->middleware('check.admin')->except('index');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -23,6 +29,8 @@ class CategorieController extends Controller
             $categories = Categorie::select('name', 'icon', 'slug')->orderBy('name')->get();
             return response()->json($categories, 200);
         }
+        if (!$request->user()->admin)
+            abort(401);
         $categories = Categorie::all()->sortBy('name');
         //Se retornara una vista y a esta se le adjuntaran las categorias.
         return view('categorie.index', compact('categories'));

@@ -9,8 +9,6 @@ use ArticulosReligiosos\App_config;
 
 class HomeController extends Controller
 {
-
-
     /**
      * Show the application dashboard.
      *

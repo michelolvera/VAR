@@ -52,7 +52,7 @@
 		<div class="input-field file-field col s12 m6">
 			<div class="btn">
 				<span>Logo</span>
-				<input name="store_logo" type="file">
+				<input name="store_logo" type="file" accept="image/*">
 			</div>
 			<div class="file-path-wrapper">
 				<input class="file-path validate" type="text">

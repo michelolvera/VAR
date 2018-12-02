@@ -32,6 +32,6 @@
 </div>
 @endsection
 @section('extraimports')
-<script src="{{ asset('js/categorie/index.js') }}"></script>
-<script src="{{ asset('js/subcategorie/delete.js') }}"></script>
+<script src="{{ asset('js/floating-button.js') }}"></script>
+<script src="{{ asset('js/state/delete.js') }}"></script>
 @endsection

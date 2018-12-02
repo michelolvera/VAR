@@ -22,6 +22,7 @@ class ConfigController extends Controller
     function update(AppConfigRequest $request){
     	$config = App_config::first();
     	if($request->hasFile('store_logo')){
+			$picture = $request->file('store_logo');
     		@unlink(public_path().'/img/'.$config->store_logo);
     		$name = time().'logo_.'.$picture->getClientOriginalExtension();
             $picture->move(public_path().'/img/', $name);

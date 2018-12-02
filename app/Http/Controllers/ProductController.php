@@ -94,8 +94,7 @@ class ProductController extends Controller
             $count++;
         }
         //Retorna la vista de productos con todos los productos como adjunto.
-        $products = Product::all()->sortBy('name');
-        return view('product.index', compact('products'));
+        return redirect('product/');
     }
 
     /**

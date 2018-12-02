@@ -7,9 +7,9 @@
         @foreach ($slides as $slide)
         <li>
             @if ($slide->redirect != null)
-            <a href="{{ $slide->redirect }}"><img src="{{ $slide->img_url }}"></a>
+            <a href="{{ $slide->redirect }}"><img src="img/{{ $slide->img_url }}"></a>
             @else
-            <img src="{{ $slide->img_url }}">
+            <img src="img/{{ $slide->img_url }}">
             @endif
             <div class="caption center-align">
                 <h3>{{ $slide->title }}</h3>

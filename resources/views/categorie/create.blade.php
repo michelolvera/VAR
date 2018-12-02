@@ -41,9 +41,9 @@
 			</div>
 			@endif
 		</div>
-		<div class="input-field col s12 m6">
-			<input name="css_color" type="text" value="{{ old('css_color') }}" required>
+		<div class="col s12 m6">
 			<label for="css_color">Color CSS</label>
+			<input name="css_color" type="color" value="{{ old('css_color', '#000000') }}" required>
 			@if ($errors->has('css_color'))
 			<div class="card-panel teal">
 				<span class="white-text">{{ $errors->first('css_color') }}</span>

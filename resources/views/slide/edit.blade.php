@@ -1,10 +1,11 @@
 @extends('layouts.app')
 @section('content')
-<form method="POST" action="/slide" enctype="multipart/form-data">
+<form method="POST" action="/slide/{{ $slide->id }}" enctype="multipart/form-data">
 	@csrf
+    @method('PUT')
 	<div class="row">
 		<div class="input-field col s12 m6">
-			<input name="title" type="text" value="{{ old('title') }}" required>
+			<input name="title" type="text" value="{{ $slide->title }}" required>
 			<label for="title">Titulo</label>
 			@if ($errors->has('title'))
 			<div class="card-panel teal">
@@ -13,7 +14,7 @@
 			@endif
 		</div>
 		<div class="input-field col s12 m6">
-			<textarea id="text" class="materialize-textarea" name="text" required >{{ old('text') }}</textarea>
+			<textarea id="text" class="materialize-textarea" name="text" required >{{ $slide->text }}</textarea>
 			<label for="text">Texto</label>
 			@if ($errors->has('text'))
 			<div class="card-panel teal">
@@ -22,7 +23,7 @@
 			@endif
 		</div>
         <div class="input-field col s12 m6">
-			<input name="redirect" type="url" value="{{ old('redirect') }}">
+			<input name="redirect" type="url" value="{{ $slide->redirect }}">
 			<label for="redirect">Enlace</label>
 			@if ($errors->has('redirect'))
 			<div class="card-panel teal">
@@ -55,7 +56,7 @@
 		</div>
 		<div class="col s6">
 			<button type="submit" class="btn waves-effect waves-light">
-				Registrar slide
+				Actualizar slide
 				<i class="material-icons right">send</i>
 			</button>
 		</div>

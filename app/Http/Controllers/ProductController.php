@@ -78,7 +78,7 @@ class ProductController extends Controller
             switch ($request->img_opt) {
                 case 0:
                     //Rellenar
-                $image->crop(600, 900, $allow_enlarge = True);                    ;
+                $image->crop(600, 900, $allow_enlarge = True);
                 break;
                 case 1:
                     //Expandir

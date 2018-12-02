@@ -4,6 +4,7 @@ namespace ArticulosReligiosos\Http\Controllers;
 
 use ArticulosReligiosos\Slide;
 use Illuminate\Http\Request;
+use \Gumlet\ImageResize;
 
 class SlidesController extends Controller
 {
@@ -51,8 +52,11 @@ class SlidesController extends Controller
         }
         if($request->hasFile('img_url')){
             $picture = $request->file('img_url');
-    		$name = time().'slide_.'.$picture->getClientOriginalExtension();
+    		$name = time().'_slide.'.$picture->getClientOriginalExtension();
             $picture->move(public_path().'/img/', $name);
+            $image = new ImageResize(public_path().'/img/'.$name);
+            $image->crop(1000, 400, $allow_enlarge = True);
+            $image->save(public_path().'/img/'.$name);
             $slide->img_url = $name;
             $slide->save();
     	}
@@ -78,7 +82,7 @@ class SlidesController extends Controller
      */
     public function edit(Slide $slide)
     {
-        //
+        return view('slide.edit', compact('slide'));
     }
 
     /**
@@ -90,7 +94,19 @@ class SlidesController extends Controller
      */
     public function update(Request $request, Slide $slide)
     {
-        //
+        $slide->fill($request->all());
+        if($request->hasFile('img_url')){
+            @unlink(public_path().'/img/'.$slide->img_url);
+            $picture = $request->file('img_url');
+    		$name = time().'_slide.'.$picture->getClientOriginalExtension();
+            $picture->move(public_path().'/img/', $name);
+            $image = new ImageResize(public_path().'/img/'.$name);
+            $image->crop(1000, 400, $allow_enlarge = True);
+            $image->save(public_path().'/img/'.$name);
+            $slide->img_url = $name;
+    	}
+        $slide->save();
+        return redirect('slide/');
     }
 
     /**
@@ -101,6 +117,8 @@ class SlidesController extends Controller
      */
     public function destroy(Slide $slide)
     {
-        //
+        @unlink(public_path().'/img/'.$slide->img_url);
+        $slide->delete();
+        return redirect('slide/');
     }
 }

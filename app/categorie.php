@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Categorie extends Model
 {
     protected $fillable = [
-        'name', 'icon', 'css_color',
+        'name', 'icon', 'css_color', 'slug',
     ];
 
     /**

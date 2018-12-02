@@ -5,6 +5,7 @@ namespace ArticulosReligiosos\Http\Controllers;
 use ArticulosReligiosos\State;
 use ArticulosReligiosos\Countrie;
 use Illuminate\Http\Request;
+use ArticulosReligiosos\Http\Requests\StateRequest;
 
 class StateController extends Controller
 {
@@ -34,7 +35,8 @@ class StateController extends Controller
         //Si la solicitud se hace mediante HTTP, se retonara una vista.
         if (!$request->user()->admin)
             abort(401);
-        return "Vista de Estados ";
+        $states = State::all()->sortBy('name');
+		return view('state.index', compact('states'));
     }
 
     /**
@@ -44,7 +46,8 @@ class StateController extends Controller
      */
     public function create()
     {
-        //
+		$countries = Countrie::all()->sortBy('name');
+		return view('state.create', compact('countries'));
     }
 
     /**
@@ -53,9 +56,12 @@ class StateController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StateRequest $request)
     {
-        //
+		Countrie::find($request->countrie_id)->states()->save(new State([
+            'name' => $request->name,
+        ]));
+        return redirect('/state');
     }
 
     /**
@@ -66,7 +72,7 @@ class StateController extends Controller
      */
     public function show(State $state)
     {
-        //
+        abort(404);
     }
 
     /**
@@ -77,7 +83,8 @@ class StateController extends Controller
      */
     public function edit(State $state)
     {
-        //
+        $countries = Countrie::all()->sortBy('name');
+		return view('state.edit', compact('state', 'countries'));
     }
 
     /**
@@ -87,9 +94,12 @@ class StateController extends Controller
      * @param  \ArticulosReligiosos\State  $state
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, State $state)
+    public function update(StateRequest $request, State $state)
     {
-        //
+        $state->name = $request->name;
+        $state->countrie()->associate(Countrie::find($request->countrie_id));
+        $state->save();
+        return redirect('state/');
     }
 
     /**
@@ -100,6 +110,7 @@ class StateController extends Controller
      */
     public function destroy(State $state)
     {
-        //
+        $state->delete();
+        return redirect('state/');
     }
 }

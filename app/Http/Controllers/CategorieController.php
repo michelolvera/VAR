@@ -63,8 +63,8 @@ class CategorieController extends Controller
         $categorie = Categorie::create([
             'name' => $request->name,
             'icon' => $request->icon,
-            'css_color' => $request->css_color,
             'slug' => str_replace(' ', '-', $request->name).'-'.time(),
+            'css_color' => $request->css_color
         ]);
         $categorie->subcategories()->save(new Subcategorie([
             'name' => 'Sin subcategoría',

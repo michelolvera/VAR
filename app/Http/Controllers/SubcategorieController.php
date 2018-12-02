@@ -62,8 +62,7 @@ class SubcategorieController extends Controller
             'name' => $request->name,
             'slug' => str_replace(' ', '-', $request->name).'-'.time(),
         ]));
-        $subcategories = Subcategorie::all()->sortBy('name');
-        return view('subcategorie.index', compact('subcategories'));
+        return redirect('/subcategorie');
     }
 
     /**
@@ -74,7 +73,7 @@ class SubcategorieController extends Controller
      */
     public function show(Subcategorie $subcategorie)
     {
-        //
+        abort(404);
     }
 
     /**
@@ -96,11 +95,12 @@ class SubcategorieController extends Controller
      * @param  \ArticulosReligiosos\Subcategorie  $subcategorie
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Subcategorie $subcategorie)
+    public function update(SubcategorieRequest $request, Subcategorie $subcategorie)
     {
-        $subcategorie->fill($request->all());
+        $subcategorie->name = $request->name;
+        $subcategorie->categorie()->associate(Categorie::find($request->categorie_id));
         $subcategorie->save();
-        return redirect('categorie/');
+        return redirect('subcategorie/');
     }
 
     /**

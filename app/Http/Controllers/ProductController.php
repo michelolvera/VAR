@@ -19,8 +19,8 @@ class ProductController extends Controller
     //Contructor que se basa en middleware de autentificacion y check.admin
     public function __construct()
     {
-        $this->middleware('auth')->except('index', 'show');
-        $this->middleware('check.admin')->except('index', 'show');
+        $this->middleware('auth')->except('index', 'show', 'index_categorie', 'index_subcategorie');
+        $this->middleware('check.admin')->except('index', 'show', 'index_categorie', 'index_subcategorie');
     }
 
     /**
@@ -32,6 +32,17 @@ class ProductController extends Controller
     {
         //Retorna la vista de productos con todos los productos adjuntos.
         $products = Product::all()->sortBy('name');
+        return view('product.index', compact('products'));
+    }
+
+    public function index_categorie(Categorie $categorie){
+        $products = $categorie->products()->get()->sortBy('name');
+        $subcategories = $categorie->subcategories()->get()->sortBy('name');
+        return view('product.index', compact('products', 'subcategories'));
+    }
+
+    public function index_subcategorie(Subcategorie $subcategorie){
+        $products = $subcategorie->products()->get();
         return view('product.index', compact('products'));
     }
 

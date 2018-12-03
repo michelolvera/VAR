@@ -6,7 +6,7 @@ $(document).ready(function() {
 	})
 	.done(function (jsonObject) {
 		jsonObject.forEach(row => {
-			$('#categories').append('<li><a href="../product/'+row['slug']+'"><i class="material-icons" style="color: '+row['css_color']+';">'+row['icon']+'</i>'+row['name']+'</a></li>');
+			$('#categories').append('<li><a href="/product/bycategorie/'+row['slug']+'"><i class="material-icons" style="color: '+row['css_color']+';">'+row['icon']+'</i>'+row['name']+'</a></li>');
 		});
 	})
 	.fail(function () {
@@ -23,7 +23,7 @@ $(document).ready(function() {
 		event.preventDefault();
 		abrirCarrito();
 	})
-	
+
 	$('.modal').modal();
 });
 

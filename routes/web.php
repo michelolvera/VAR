@@ -16,6 +16,8 @@ Auth::routes();
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('config', 'ConfigController@edit');
 Route::put('config', 'ConfigController@update');
+Route::get('product/bycategorie/{categorie}', 'ProductController@index_categorie');
+Route::get('product/bysubcategorie/{subcategorie}', 'ProductController@index_subcategorie');
 Route::get('comment', 'CommentController@index');
 Route::post('comment/{product}', 'CommentController@store');
 Route::post('comment/replie/{comment}', 'CommentController@store_replie');

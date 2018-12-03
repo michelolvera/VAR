@@ -19,12 +19,13 @@ class Categorie extends Model
     {
         return 'slug';
     }
-    
+
     public function subcategories(){
         return $this->hasMany('ArticulosReligiosos\Subcategorie');
     }
 
-    public function products(){
-        return $this->hasMany('ArticulosReligiosos\Product');
+    public function products()
+    {
+        return $this->hasManyThrough('ArticulosReligiosos\Product', 'ArticulosReligiosos\Subcategorie');
     }
 }

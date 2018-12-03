@@ -61,6 +61,8 @@
     </div>
     @endif
 </div>
+@auth
+@if (Auth::user()->admin)
 <div class="fixed-action-btn">
     <a class="btn-floating btn-large red">
             <i class="large material-icons">menu</i>
@@ -74,6 +76,10 @@
 <form id="delete-form" action="/product/{{ $product->slug }}" method="POST" style="display: none;">
     @method('DELETE') @csrf
 </form>
+<script src="{{ asset('js/floating-button.js') }}"></script>
+@endif
+@endauth
+
 @endsection
 
 @section('extraimports')

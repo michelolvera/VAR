@@ -10,7 +10,7 @@
 				<p>{{ $product->description }}</p>
 			</div>
 			<div class="card-action">
-				<a href="product/{{ $product->slug }}">A solo ${{ $product->price * (1-$product->discount_percent/100) }}</a>
+				<a href="/product/{{ $product->slug }}">A solo ${{ $product->price * (1-$product->discount_percent/100) }}</a>
 			</div>
 		</div>
 	</div>

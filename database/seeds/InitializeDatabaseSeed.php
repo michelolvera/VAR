@@ -76,7 +76,7 @@ class InitializeDatabaseSeed extends Seeder
         $product->product_img_names()->save($product_img);
 
         //Crear comentario y respuesta
-        $comment = new Comment(['title' => 'Información de calidad', 'text' => 'Me gustaría saber si su pasta es de piel.']);
+        $comment = new Comment(['text' => 'Me gustaría saber si su pasta es de piel.']);
         $comment->user()->associate($user);
         $comment->product()->associate($product);
         $comment->save();
@@ -96,22 +96,22 @@ class InitializeDatabaseSeed extends Seeder
             'title' => 'Slide 1',
             'text' => 'Texto del Slide 1',
             'redirect' => 'http://www.google.com',
-            'img_url' => 'svg/403.svg'
+            'img_url' => '403.svg'
         ]);
         Slide::create([
             'title' => 'Slide 2',
             'text' => 'Texto del Slide 2',
-            'img_url' => 'svg/404.svg'
+            'img_url' => '404.svg'
         ]);
         Slide::create([
             'title' => 'Slide 3',
             'text' => 'Texto del Slide 3',
-            'img_url' => 'svg/500.svg'
+            'img_url' => '500.svg'
         ]);
         Slide::create([
             'title' => 'Slide 4',
             'text' => 'Texto del Slide 4',
-            'img_url' => 'svg/503.svg'
+            'img_url' => '503.svg'
         ]);
     }
 }

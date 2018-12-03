@@ -13,7 +13,7 @@ class CountrieController extends Controller
         $this->middleware('auth')->except('index');
         $this->middleware('check.admin')->except('index');
     }
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -58,7 +58,7 @@ class CountrieController extends Controller
 
         ]);
         $countries = Countrie::all()->sortBy('name');
-        return view('countrie.index', compact('countries'));
+        return redirect('countrie/');
     }
 
     /**

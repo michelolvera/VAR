@@ -36,8 +36,11 @@ function datosProducto(slug){
 }
 
 function abrirCarrito(){
+	let elem = document.getElementById("modal_shopping");
+	let instance = M.Modal.getInstance(elem);
 	let car = Cookies.getJSON('car');
 	if (car == undefined || car.length == 0){
+		instance.close();
 		M.toast({html: 'No existe ningún producto en el carrito.'});
 	}else{
 		let htmlString = "<ul class='collection'>";
@@ -79,8 +82,6 @@ function abrirCarrito(){
 		htmlString+="</ul>";
 		$("#productlist").html(htmlString);
 		M.updateTextFields();
-		let elem = document.getElementById("modal_shopping");
-		let instance = M.Modal.getInstance(elem);
 		instance.open();
 	}
 }

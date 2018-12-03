@@ -6,13 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
 {
-    //
+    protected $fillable = [
+        'text',
+    ];
+
     public function user() {
     	return $this->belongsTo('ArticulosReligiosos\User');
     }
 
-    public function replies(){
-        return $this->hasMany('ArticulosReligiosos\Replie');
+    public function replie(){
+        return $this->hasOne('ArticulosReligiosos\Replie');
     }
 
     public function product() {

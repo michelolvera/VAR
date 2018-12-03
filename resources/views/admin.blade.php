@@ -42,7 +42,13 @@
 			<i class="material-icons">collections</i>
 			Gestionar slides
 		</a>
-	</li>
+    </li>
+    <li>
+            <a href="/comment">
+                <i class="material-icons">message</i>
+                Gestionar comentarios
+            </a>
+        </li>
 	<li>
 		<a href="/user">
 			<i class="material-icons">supervised_user_circle</i>

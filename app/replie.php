@@ -6,7 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Replie extends Model
 {
-    //
+    protected $fillable = [
+        'text',
+    ];
+
     public function user() {
     	return $this->belongsTo('ArticulosReligiosos\User');
     }

@@ -13,7 +13,7 @@ class SlideRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,10 @@ class SlideRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'title' => 'required|string|min: 2',
+            'text' => 'required|string|min: 4',
+            'redirect' => 'URL',
+            'img_url' => 'nullable|image',
         ];
     }
 }

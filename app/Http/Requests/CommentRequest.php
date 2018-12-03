@@ -6,7 +6,7 @@ namespace ArticulosReligiosos\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CommentsRequest extends FormRequest
+class CommentRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -28,10 +28,7 @@ class CommentsRequest extends FormRequest
         /*
         */
         return [
-            'title' => 'required',
-            'text' => 'required',
-            'product_id' => 'required',
-            'user_id' => 'required',
+            'text' => 'required|string|min: 5',
         ];
     }
 }

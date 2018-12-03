@@ -1,13 +1,11 @@
 @extends('layouts.app')
-
 @section('content')
 <div class="row">
     <div class="col s12 m6">
         @if ($product->product_img_names()->count() > 0)
         <div class="fotorama">
             @foreach ($product->product_img_names()->get() as $slide)
-            <img src="{{ asset('img/'.$slide->name) }}">
-            @endforeach
+            <img src="{{ asset('img/'.$slide->name) }}"> @endforeach
         </div>
         @endif
     </div>
@@ -28,22 +26,60 @@
             <button class="waves-effect waves-light btn" style="margin: 1em 0;" onclick="agregarCarrito('{{ $product->slug }}')"><i class="material-icons right">add_shopping_cart</i>Agregar al carrito</button>
         </div>
     </div>
-    <div class="fixed-action-btn">
-        <a class="btn-floating btn-large red">
+</div>
+<div class="divider"></div>
+@if (count($product->comments()->get())>0)
+<div class="row" id="comments">
+    <h5>Preguntas y respuestas</h5>
+    <form action="/comment/{{ $product->slug }}" method="POST">
+        @csrf
+        <h6>Pregunta:</h6>
+        <div class="row">
+            <div class="input-field col s12 m10">
+                <textarea id="text" class="materialize-textarea" name="text" required>{{ old('text') }}</textarea>
+                <label for="text">Escribe una pregunta...</label> @if ($errors->has('text'))
+                <div class="card-panel teal">
+                    <span class="white-text">{{ $errors->first('text') }}</span>
+                </div>
+                @endif
+            </div>
+            <div class="input-field col s12 m2">
+                <button class="waves-effect waves-light btn" type="submit">Enviar<i class="material-icons right">forum</i></button>
+            </div>
+        </div>
+    </form>
+    <div class="col s12">
+        @foreach ($product->comments()->get() as $comment)
+        <p><i class="material-icons">comment</i> <span style="font-weight: bold;">{{ $comment->user()->first()->name }}: </span>{{ $comment->text }}</p>
+        @if ($comment->replie()->first()!=null)
+        <div>
+            <p><i class="material-icons">message</i><span style="color: #999;"> {{ $comment->replie()->first()->text }}</span></p>
+        </div>
+        @endif
+        <div class="divider"></div>
+        @endforeach
+    </div>
+</div>
+@endif
+<div class="fixed-action-btn">
+    <a class="btn-floating btn-large red">
             <i class="large material-icons">menu</i>
         </a>
-        <ul>
-            <li><a id="delete_btn" href="#" class="btn-floating red"><i class="material-icons">delete</i></a></li>
-            <li><a href="../product/{{ $product->slug }}/edit"class="btn-floating"><i class="material-icons">mode_edit</i></a></li>
-        </ul>
-    </div>
-    <form id="delete-form" action="/product/{{ $product->slug }}" method="POST" style="display: none;">
-        @method('DELETE')
-        @csrf
-    </form>
-    @endsection
-    @section('extraimports')
-    <script src="{{ asset('js/product/show.js') }}"></script>
-    <link  href="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet"> <!-- 3 KB -->
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script> <!-- 16 KB -->
-    @endsection
+    <ul>
+        <li><a id="delete_btn" href="#" class="btn-floating red"><i class="material-icons">delete</i></a></li>
+        <li><a href="../product/{{ $product->slug }}/edit" class="btn-floating"><i class="material-icons">mode_edit</i></a></li>
+    </ul>
+</div>
+
+<form id="delete-form" action="/product/{{ $product->slug }}" method="POST" style="display: none;">
+    @method('DELETE') @csrf
+</form>
+@endsection
+
+@section('extraimports')
+<script src="{{ asset('js/product/show.js') }}"></script>
+<link href="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet">
+<!-- 3 KB -->
+<script src="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script>
+<!-- 16 KB -->
+@endsection

@@ -3,6 +3,7 @@
 namespace ArticulosReligiosos\Http\Controllers;
 
 use ArticulosReligiosos\Slide;
+use ArticulosReligiosos\Http\Requests\SlideRequest;
 use Illuminate\Http\Request;
 use \Gumlet\ImageResize;
 
@@ -41,7 +42,7 @@ class SlidesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SlideRequest $request)
     {
         $slide = new Slide([
             'title' => $request->title,
@@ -92,7 +93,7 @@ class SlidesController extends Controller
      * @param  \ArticulosReligiosos\Slide  $slide
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Slide $slide)
+    public function update(SlideRequest $request, Slide $slide)
     {
         $slide->fill($request->all());
         if($request->hasFile('img_url')){

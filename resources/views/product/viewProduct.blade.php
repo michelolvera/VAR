@@ -28,10 +28,9 @@
     </div>
 </div>
 <div class="divider"></div>
-@if (count($product->comments()->get())>0)
 <div class="row" id="comments">
     <h5>Preguntas y respuestas</h5>
-    <form action="/comment/{{ $product->slug }}" method="POST">
+    <form class="col s12" action="/comment/{{ $product->slug }}" method="POST">
         @csrf
         <h6>Pregunta:</h6>
         <div class="row">
@@ -48,6 +47,7 @@
             </div>
         </div>
     </form>
+    @if (count($product->comments()->get())>0)
     <div class="col s12">
         @foreach ($product->comments()->get() as $comment)
         <p><i class="material-icons">comment</i> <span style="font-weight: bold;">{{ $comment->user()->first()->name }}: </span>{{ $comment->text }}</p>
@@ -59,8 +59,8 @@
         <div class="divider"></div>
         @endforeach
     </div>
+    @endif
 </div>
-@endif
 <div class="fixed-action-btn">
     <a class="btn-floating btn-large red">
             <i class="large material-icons">menu</i>

@@ -14,12 +14,15 @@
         <div class="navbar-fixed">
             <nav>
                 <div class="nav-wrapper {{ ArticulosReligiosos\App_config::first()->nav_materialize_color }}">
-                    <a href="#" class="brand-logo center">{{ ArticulosReligiosos\App_config::first()->store_name }}</a>
+                    <a href="#" class="brand-logo">{{ ArticulosReligiosos\App_config::first()->store_name }}</a>
                     <ul id="nav-mobile" class="left">
                         <li><a id="btn_sidenav" href="#"><i class="material-icons">menu</i></a></li>
                     </ul>
                     <ul id="nav-mobile" class="right">
-                        <li><a id="btn_shopping" href="#"><i class="material-icons">shopping_basket</i></a></li>
+                        @foreach (ArticulosReligiosos\Categorie::select('name', 'icon', 'css_color','slug')->orderBy('name')->get() as $categorie)
+                        <li class="hide-on-med-and-down"><a href="/product/bycategorie/{{$categorie->slug}}">{{$categorie->name}}<i class="material-icons right" style="color: {{$categorie->css_color}};">{{$categorie->icon}}</i></a></li>
+                        @endforeach
+                        <li><a id="btn_shopping" href="#"><i class="material-icons left">shopping_basket</i><span id="cantidad_articulos" class="new badge" data-badge-caption="art.">0</span></a></li>
                     </ul>
                     <!-- Inicio de sesion en caso de requerirse en navbar
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
@@ -114,7 +117,11 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Pagar ahora</a>
+                @if (Auth::check())
+                <div id="paypal-button"></div>
+                @else
+                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Para comprar, inicia sesion</a>
+                @endif
             </div>
         </div>
     </div>
@@ -126,6 +133,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="{{ asset('js/principal.js') }}"></script>
+    @if (Auth::check())
+    <script src="https://www.paypalobjects.com/api/checkout.js"></script>
+    <script src="{{ asset('js/paypal.js') }}"></script>
+    @endif
+
     <script src="{{ asset('js/js.cookie-2.2.0.min.js') }}"></script>
     @yield('extraimports')
 </body>

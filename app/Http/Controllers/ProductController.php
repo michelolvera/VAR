@@ -43,7 +43,8 @@ class ProductController extends Controller
 
     public function index_subcategorie(Subcategorie $subcategorie){
         $products = $subcategorie->products()->get();
-        return view('product.index', compact('products'));
+        $subcategoriename = $subcategorie->name;
+        return view('product.index', compact('products', 'subcategoriename'));
     }
 
     /**

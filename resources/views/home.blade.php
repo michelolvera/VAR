@@ -34,7 +34,7 @@
                     <p class="truncate">{{ $discount->description }}</p>
                 </div>
                 <div class="card-action" style="padding: 0.5em;">
-                    <a href="product/{{ $discount->slug }}">De ${{ $discount->price }} a ${{ $discount->price * (1-$discount->discount_percent/100) }}</a>
+                    <a href="product/{{ $discount->slug }}">De ${{ $discount->price }} a ${{ round($discount->price * (1-$discount->discount_percent/100), 2) }}</a>
                 </div>
             </div>
         </div>
@@ -57,7 +57,7 @@
                     <p class="truncate">{{ $pinned->description }}</p>
                 </div>
                 <div class="card-action" style="padding: 0.5em;">
-                    <a href="product/{{ $pinned->slug }}">A solo ${{ $pinned->price * (1-$pinned->discount_percent/100) }}</a>
+                    <a href="product/{{ $pinned->slug }}">A solo ${{ round($pinned->price * (1-$pinned->discount_percent/100),2) }}</a>
                 </div>
             </div>
         </div>
@@ -80,7 +80,7 @@
                     <p class="truncate">{{ $bestseller->description }}</p>
                 </div>
                 <div class="card-action" style="padding: 0.5em;">
-                    <a href="product/{{ $bestseller->slug }}">A solo ${{ $bestseller->price * (1-$bestseller->discount_percent/100) }}</a>
+                    <a href="product/{{ $bestseller->slug }}">A solo ${{ round($bestseller->price * (1-$bestseller->discount_percent/100),2) }}</a>
                 </div>
             </div>
         </div>
@@ -97,5 +97,4 @@
 @section('extraimports')
 <script src="{{ asset('js/home.js') }}"></script>
 <link rel="stylesheet" href="{{ asset('css/home.css') }}">
-</style>
 @endsection

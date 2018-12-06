@@ -14,7 +14,7 @@
         @if ($product->discount_percent>0)
         <p style="font-weight: bold;">Precio: <span style="color:#993333;text-decoration: line-through;">${{ $product->price }}</span></p>
         <p style="font-weight: bold;">Descuento: <span style="color:#993333">{{ $product->discount_percent }}%</span></p>
-        <p style="font-weight: bold;">Precio con descuento: <span style="color:#993333">${{ ($product->price)-(($product->price)*(($product->discount_percent)/100)) }}</span></p>
+        <p style="font-weight: bold;">Precio con descuento: <span style="color:#993333">${{ round(($product->price)-(($product->price)*(($product->discount_percent)/100)),2) }}</span></p>
         @else
         <p style="font-weight: bold;">Precio: <span style="color:#993333;">${{ $product->price }}</span></p>
         @endif
@@ -76,7 +76,6 @@
 <form id="delete-form" action="/product/{{ $product->slug }}" method="POST" style="display: none;">
     @method('DELETE') @csrf
 </form>
-<script src="{{ asset('js/floating-button.js') }}"></script>
 @endif
 @endauth
 

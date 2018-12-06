@@ -11,7 +11,11 @@
     @endforeach
 </ul>
 @else
+@if (isset($subcategoriename))
+<h2 class="subindex center-align">Productos en la subcategoria {{ $subcategoriename }}</h2>
+@else
 <h2 class="subindex center-align">Todos los productos</h2>
+@endif
 @endif
     @include('product.product-grid')
 @auth

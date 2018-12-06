@@ -6,6 +6,7 @@ use ArticulosReligiosos\State;
 use ArticulosReligiosos\Countrie;
 use Illuminate\Http\Request;
 use ArticulosReligiosos\Http\Requests\StateRequest;
+use Illuminate\Support\Facades\Auth;
 
 class StateController extends Controller
 {

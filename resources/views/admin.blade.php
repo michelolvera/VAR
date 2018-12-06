@@ -36,6 +36,12 @@
 			<i class="material-icons">add_location</i>
 			Gestionar estados
 		</a>
+    </li>
+    <li>
+		<a href="/city">
+			<i class="material-icons">location_city</i>
+			Gestionar ciudades
+		</a>
 	</li>
 	<li>
 		<a href="/slide">

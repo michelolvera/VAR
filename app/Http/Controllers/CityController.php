@@ -4,7 +4,9 @@ namespace ArticulosReligiosos\Http\Controllers;
 
 use ArticulosReligiosos\City;
 use ArticulosReligiosos\State;
+use ArticulosReligiosos\Http\Requests\CityRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CityController extends Controller
 {
@@ -36,7 +38,8 @@ class CityController extends Controller
      */
     public function create()
     {
-        //
+        $states = State::all()->sortBy('name');
+		return view('city.create', compact('states'));
     }
 
     /**
@@ -45,9 +48,13 @@ class CityController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CityRequest $request)
     {
-        //
+        State::find($request->state_id)->cities()->save(new City([
+            'name' => $request->name,
+            'shipping_cost' => $request->shipping_cost
+        ]));
+        return redirect('/city');
     }
 
     /**
@@ -58,7 +65,7 @@ class CityController extends Controller
      */
     public function show(City $city)
     {
-        //
+        abort(404);
     }
 
     /**
@@ -69,7 +76,8 @@ class CityController extends Controller
      */
     public function edit(City $city)
     {
-        //
+        $states = State::all()->sortBy('name');
+		return view('city.edit', compact('city', 'states'));
     }
 
     /**
@@ -79,9 +87,13 @@ class CityController extends Controller
      * @param  \ArticulosReligiosos\City  $city
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, City $city)
+    public function update(CityRequest $request, City $city)
     {
-        //
+        $city->name = $request->name;
+        $city->shipping_cost = $request->shipping_cost;
+        $city->state()->associate(State::find($request->state_id));
+        $city->save();
+        return redirect('city/');
     }
 
     /**
@@ -92,6 +104,7 @@ class CityController extends Controller
      */
     public function destroy(City $city)
     {
-        //
+        $city->delete();
+        return redirect('city/');
     }
 }

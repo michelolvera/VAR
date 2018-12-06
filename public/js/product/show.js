@@ -25,6 +25,7 @@ function agregarCarrito(slug){
 		if (!encontrado)
 			car.push({slug:slug, cantidad:1});
 	}
-	Cookies.set('car', car);
+    Cookies.set('car', car);
+    $("#cantidad_articulos").text(Cookies.getJSON('car').length);
 	abrirCarrito();
 }

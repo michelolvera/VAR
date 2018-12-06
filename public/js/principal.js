@@ -1,6 +1,6 @@
 var total;
 $(document).ready(function () {
-    $("#cantidad_articulos").text(Cookies.getJSON('car').length);
+    $("#cantidad_articulos").text(Cookies.getJSON('car') == undefined ? '0' : Cookies.getJSON('car').length);
     $.ajax({
         method: "get",
         url: "/categorie",

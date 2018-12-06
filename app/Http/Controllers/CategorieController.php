@@ -8,6 +8,7 @@ use ArticulosReligiosos\Categorie;
 use ArticulosReligiosos\Subcategorie;
 use Illuminate\Http\Request;
 use ArticulosReligiosos\Http\Requests\CategorieRequest;
+use Illuminate\Support\Facades\Auth;
 
 class CategorieController extends Controller
 {

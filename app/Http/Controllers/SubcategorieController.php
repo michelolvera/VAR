@@ -6,6 +6,7 @@ use ArticulosReligiosos\Subcategorie;
 use ArticulosReligiosos\Categorie;
 use Illuminate\Http\Request;
 use ArticulosReligiosos\Http\Requests\SubcategorieRequest;
+use Illuminate\Support\Facades\Auth;
 
 class SubcategorieController extends Controller
 {

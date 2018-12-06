@@ -14,7 +14,7 @@ class SubcategorieController extends Controller
         $this->middleware('auth')->except('index');
         $this->middleware('check.admin')->except('index');
     }
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -33,7 +33,7 @@ class SubcategorieController extends Controller
             return response()->json($subcategorie, 200);
         }
         //Si la solicitud se hace mediante HTTP, se retonara una vista.
-        if (!$request->user()->admin)
+        if (!Auth::check() || !$request->user()->admin)
             abort(401);
         $subcategories = Subcategorie::all()->sortBy('name');
         return view('subcategorie.index', compact('subcategories'));

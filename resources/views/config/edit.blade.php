@@ -14,15 +14,6 @@
 			@endif
 		</div>
 		<div class="input-field col s12 m6">
-			<input name="shipping_cost" type="number"min="0" step="0.01" value="{{ $config->shipping_cost }}" required>
-			<label for="shipping_cost">Costo de envió</label>
-			@if ($errors->has('shipping_cost'))
-			<div class="card-panel teal">
-				<span class="white-text">{{ $errors->first('shipping_cost') }}</span>
-			</div>
-			@endif
-		</div>
-		<div class="input-field col s12 m6">
 			<input name="carousel_products" type="number" min="5" value="{{ $config->carousel_products }}" required>
 			<label for="carousel_products">Cantidad de productos en el carrusel</label>
 			@if ($errors->has('carousel_products'))

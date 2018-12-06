@@ -3,7 +3,7 @@
 @section('content')
 <form method="POST" action="{{ route('register') }}">
     @csrf
-    
+
     <div class="row">
         <div class="input-field col s12 m12 l4">
             <input name="name" type="text" value="{{ old('name') }}" required>
@@ -117,35 +117,38 @@
             </div>
             @endif
         </div>
-        <div class="input-field col s12 m12 l6">
-            <input name="city" type="text" value="{{ old('city') }}" required>
-            <label for="city">Ciudad</label>
-            @if ($errors->has('city'))
-            <div class="card-panel teal">
-                <span class="white-text">{{ $errors->first('city') }}</span>
+    </div>
+    <div class="row">
+        <div class="col s12 m4">
+                <label>País</label>
+                <select id="countrie_id" class="browser-default" name="countrie_id" value="{{ old('countrie_id') }}" required>
+                </select>
+                @if ($errors->has('countrie_id'))
+                <div class="card-panel teal">
+                    <span class="white-text">{{ $errors->first('countrie_id') }}</span>
+                </div>
+                @endif
             </div>
-            @endif
-        </div>
-        <div class="col s12 m12 l6">
-            <label>País</label>
-            <select id="countrie_id" class="browser-default" name="countrie_id" value="{{ old('countrie_id') }}" required>
-            </select>
-            @if ($errors->has('countrie_id'))
-            <div class="card-panel teal">
-                <span class="white-text">{{ $errors->first('countrie_id') }}</span>
+            <div class="col s12 m4">
+                <label>Estado</label>
+                <select id="state_id" class="browser-default" name="state_id" value="{{ old('state_id') }}" required>
+                </select>
+                @if ($errors->has('state_id'))
+                <div class="card-panel teal">
+                    <span class="white-text">{{ $errors->first('state_id') }}</span>
+                </div>
+                @endif
             </div>
-            @endif
-        </div>
-        <div class="col s12 m12 l6">
-            <label>Estado</label>
-            <select id="state_id" class="browser-default" name="state_id" value="{{ old('state_id') }}" required>
-            </select>
-            @if ($errors->has('state_id'))
-            <div class="card-panel teal">
-                <span class="white-text">{{ $errors->first('state_id') }}</span>
+            <div class="col s12 m4">
+                <label>Ciudad</label>
+                <select id="city_id" class="browser-default" name="city_id" value="{{ old('city_id') }}" required>
+                </select>
+                @if ($errors->has('city_id'))
+                <div class="card-panel teal">
+                    <span class="white-text">{{ $errors->first('city_id') }}</span>
+                </div>
+                @endif
             </div>
-            @endif
-        </div>
     </div>
     <div class="row center-align">
         <div class="col-md-6 offset-md-4">

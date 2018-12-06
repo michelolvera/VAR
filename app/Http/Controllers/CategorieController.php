@@ -29,7 +29,7 @@ class CategorieController extends Controller
             $categories = Categorie::select('name', 'icon', 'css_color', 'slug')->orderBy('name')->get();
             return response()->json($categories, 200);
         }
-        if (!$request->user()->admin)
+        if (!Auth::check() || !$request->user()->admin)
             abort(401);
         $categories = Categorie::all()->sortBy('name');
         //Se retornara una vista y a esta se le adjuntaran las categorias.

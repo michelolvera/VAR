@@ -20,12 +20,11 @@ class CreateDomicilesTable extends Migration
             $table->string('between_streets');
             $table->string('neighborhood');
             $table->unsignedInteger('zip_code');
-            $table->string('city');
-            $table->unsignedInteger('state_id');
+            $table->unsignedInteger('city_id');
             $table->unsignedInteger('user_id');
             $table->timestamps();
             //foreign-keys
-            $table->foreign('state_id')->references('id')->on('states')->onDelete('cascade');
+            $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }

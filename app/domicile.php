@@ -8,15 +8,15 @@ class Domicile extends Model
 {
     //
     protected $fillable = [
-        'address_number', 'street', 'between_streets', 'neighborhood', 'zip_code', 'city',
+        'address_number', 'street', 'between_streets', 'neighborhood', 'zip_code',
     ];
     public function user()
     {
         return $this->belongsTo('ArticulosReligiosos\User');
     }
 
-    public function state()
+    public function city()
     {
-        return $this->belongsTo('ArticulosReligiosos\State');
+        return $this->belongsTo('ArticulosReligiosos\City');
     }
 }

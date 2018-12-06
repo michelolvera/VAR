@@ -4,7 +4,7 @@ namespace ArticulosReligiosos\Http\Controllers\Auth;
 
 use ArticulosReligiosos\User;
 use ArticulosReligiosos\Domicile;
-use ArticulosReligiosos\State;
+use ArticulosReligiosos\City;
 use ArticulosReligiosos\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -64,9 +64,9 @@ class RegisterController extends Controller
             'zip_code' => ['required', 'numeric', 'min:4'],
             'between_streets' => ['required', 'string', 'max:255'],
             'between_streets' => ['required', 'string', 'max:255'],
-            'city' => ['required', 'string', 'max:255'],
-            'countrie_id' => ['required', 'numeric'],
-            'state_id' => ['required', 'numeric'],
+            'city_id' => ['required', 'integer'],
+            'countrie_id' => ['required', 'integer'],
+            'state_id' => ['required', 'integer'],
         ]);
     }
 
@@ -97,10 +97,9 @@ class RegisterController extends Controller
             'between_streets' => $data['between_streets'],
             'neighborhood' => $data['neighborhood'],
             'zip_code' => $data['zip_code'],
-            'city' => $data['city'],
         ]);
 
-        $domicile->state()->associate(State::where('id', $data['state_id'])->first());
+        $domicile->city()->associate(City::find($data['city_id']));
         $domicile->user()->associate($user);
         $domicile->save();
         return $user;

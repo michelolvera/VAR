@@ -15,6 +15,7 @@ use ArticulosReligiosos\Sale;
 use ArticulosReligiosos\App_config;
 use ArticulosReligiosos\Product_sale;
 use ArticulosReligiosos\Slide;
+use ArticulosReligiosos\City;
 
 class InitializeDatabaseSeed extends Seeder
 {
@@ -27,7 +28,6 @@ class InitializeDatabaseSeed extends Seeder
     {
         //Crear configuraciones iniciales
         $app_config = new App_config([
-            'shipping_cost' => 100,
             'carousel_products' => 10,
             'ramdom_products' => 12,
             'products_per_page' => 30,
@@ -55,11 +55,16 @@ class InitializeDatabaseSeed extends Seeder
     	$countrie->save();
     	$state = new State();
     	$state->name = "Michoacán";
-    	$countrie->states()->save($state);
-        $domicile = new Domicile(['address_number' => '37', 'street' => "Nuevo León", 'between_streets' => 'Sonora y Sinaloa', 'neighborhood' => 'Isaac Arriaga', 'zip_code' => 58210, 'city' => 'Morelia']);
+        $countrie->states()->save($state);
+        $city = new City([
+            'name' => 'Morelia',
+            'shipping_cost' => 100.00,
+        ]);
+        $state->cities()->save($city);
+        $domicile = new Domicile(['address_number' => '37', 'street' => "Nuevo León", 'between_streets' => 'Sonora y Sinaloa', 'neighborhood' => 'Isaac Arriaga', 'zip_code' => 58210]);
 
         //Guardar domicilio asignando sus dos relaciones
-        $domicile->state()->associate($state);
+        $domicile->city()->associate($city);
         $domicile->user()->associate($user);
         $domicile->save();
 
@@ -86,7 +91,7 @@ class InitializeDatabaseSeed extends Seeder
         $reply->save();
 
         //Crear venta
-        $sale_price = ($product->price * (1-$product->discount_percent/100)) + $app_config->shipping_cost;
+        $sale_price = ($product->price * (1-$product->discount_percent/100));
         $sale = new Sale(['type' => 'paypal', 'sale_total' => $sale_price]);
         $user->sales()->save($sale);
         $sale->products()->save($product);

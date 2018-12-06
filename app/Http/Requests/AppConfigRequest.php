@@ -25,7 +25,6 @@ class AppConfigRequest extends FormRequest
     {
         return [
             'store_name' => 'required|string|min: 3',
-            'shipping_cost' => 'required|min: 0|numeric',
             'carousel_products' => 'required|min: 5|integer',
             'ramdom_products' => 'required|min: 4|integer',
             'products_per_page' => 'required|min: 12|integer',

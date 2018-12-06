@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class State extends Model
 {
-    
+
     protected $fillable = [
         'name',
     ];
@@ -15,7 +15,7 @@ class State extends Model
     	return $this->belongsTo('ArticulosReligiosos\Countrie');
     }
 
-    public function domiciles(){
-        return $this->hasMany('ArticulosReligiosos\Domicile');
+    public function cities(){
+        return $this->hasMany('ArticulosReligiosos\City');
     }
 }

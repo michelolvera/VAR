@@ -14,7 +14,7 @@ class StateController extends Controller
         $this->middleware('auth')->except('index');
         $this->middleware('check.admin')->except('index');
     }
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -33,7 +33,7 @@ class StateController extends Controller
             return response()->json($states, 200);
         }
         //Si la solicitud se hace mediante HTTP, se retonara una vista.
-        if (!$request->user()->admin)
+        if (!Auth::check() || !$request->user()->admin)
             abort(401);
         $states = State::all()->sortBy('name');
 		return view('state.index', compact('states'));

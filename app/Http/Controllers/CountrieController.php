@@ -5,6 +5,7 @@ namespace ArticulosReligiosos\Http\Controllers;
 use ArticulosReligiosos\Countrie;
 use ArticulosReligiosos\Http\Requests\CountrieRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CountrieController extends Controller
 {
@@ -24,10 +25,10 @@ class CountrieController extends Controller
         //En caso de ser una solicitud AJAX, regresa un JSON con la lista de paises
         if($request->ajax()){
             $countries = Countrie::select('id', 'name')->orderBy('name')->get();
-            return response()->json($categories, 200);
+            return response()->json($countries, 200);
         }
         //Si es una solicitud de navegador se retorna una vusta con la lista de paises adjunta
-        if (!$request->user()->admin)
+        if (!Auth::check() || !$request->user()->admin)
             abort(401);
         $countries = Countrie::all()->sortBy('name');
         return view('countrie.index', compact('countries'));;

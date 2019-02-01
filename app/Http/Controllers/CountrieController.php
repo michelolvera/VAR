@@ -23,7 +23,7 @@ class CountrieController extends Controller
     public function index(Request $request)
     {
         //En caso de ser una solicitud AJAX, regresa un JSON con la lista de paises
-        if($request->ajax()){
+        if($request->ajax() && $request->isAjax){
             $countries = Countrie::select('id', 'name')->orderBy('name')->get();
             return response()->json($countries, 200);
         }

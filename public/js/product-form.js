@@ -10,7 +10,8 @@ function update_subcategorie(){
 		method: "get",
 		url: "/subcategorie",
 		data: {
-			categorie_id: $('#categorie_id').val()
+			categorie_id: $('#categorie_id').val(),
+			isAjax: true
 		},
 		dataType: "json"
 	})

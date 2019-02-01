@@ -23,7 +23,7 @@ class StateController extends Controller
      */
     public function index(Request $request)
     {
-        if($request->ajax()){
+        if($request->ajax() && $request->isAjax){
             if ($request->countrie_id == null)
                 $states = State::all();
             else

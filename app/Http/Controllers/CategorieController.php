@@ -26,7 +26,7 @@ class CategorieController extends Controller
     public function index(Request $request)
     {
         //En caso de ser una solicitud AJAX, se retornaran las categorias en forma de JSON
-        if($request->ajax()){
+        if($request->ajax() && $request->isAjax){
             $categories = Categorie::select('name', 'icon', 'css_color', 'slug')->orderBy('name')->get();
             return response()->json($categories, 200);
         }

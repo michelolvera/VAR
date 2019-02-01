@@ -2,6 +2,9 @@ $(document).ready(function() {
 	$.ajax({
 		method: "get",
 		url: "countrie/",
+		data: {
+            isAjax: true
+        },
 		dataType: "json"
 	})
 	.done(function (jsonObject) {
@@ -21,7 +24,8 @@ function update_state(){
 		method: "get",
 		url: "state/",
 		data: {
-			countrie_id: $('#countrie_id').val()
+			countrie_id: $('#countrie_id').val(),
+			isAjax: true
 		},
 		dataType: "json"
 	})
@@ -43,7 +47,8 @@ function update_city(){
 		method: "get",
 		url: "city/",
 		data: {
-			state_id: $('#state_id').val()
+			state_id: $('#state_id').val(),
+			isAjax: true
 		},
 		dataType: "json"
 	})

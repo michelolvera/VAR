@@ -23,7 +23,7 @@ class SubcategorieController extends Controller
      */
     public function index(Request $request)
     {
-        if($request->ajax()){
+        if($request->ajax() && $request->isAjax){
             if ($request->categorie_id == null)
                 $subcategorie = Subcategorie::all();
             else

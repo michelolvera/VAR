@@ -4,6 +4,9 @@ $(document).ready(function () {
     $.ajax({
         method: "get",
         url: "/categorie",
+        data: {
+            isAjax: true
+        },
         dataType: "json"
     })
         .done(function (jsonObject) {
@@ -33,6 +36,9 @@ function datosProducto(slug) {
     return JSON.parse($.ajax({
         type: "GET",
         url: "/product/" + slug,
+        data: {
+            isAjax: true
+        },
         async: false
     }).responseText);
 }
